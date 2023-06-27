@@ -2,8 +2,10 @@ import os
 import selenium as sl
 import random
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.alert import Alert
 import pprint
 import json
+import time
 
 pp = pprint.PrettyPrinter(depth=4)
 
@@ -11,6 +13,7 @@ playerListFile = '../players'
 roomListFile = '../roomNames'
 stateFile = '../state'
 loginFile = '../loginDetails'
+prefix = 'FC '
 
 
 def WriteState(state):
@@ -82,10 +85,59 @@ def InitialiseWebDriver():
 	return driver
 
 
-def InitializeState(players, roomNames):
+def ProcessTableRow(row):
+	elementList = row.find_elements(By.XPATH, ".//*")
+	elements = {e.text : e for e in elementList}
+	elementNames = list(elements.keys())
+	rowData = {}
+	if 'Force join' in elements:
+		rowData['forceJoin'] = elements['Force join']
+	if 'Delete' in elements:
+		rowData['delete'] = elements['Delete']
+	
+	rowData['playersJoined'] = (elementNames[0].count('  IN') > 1)
+		
+	if elementNames[4] == '  IN':
+		rowData['players'] = [elementNames[3], elementNames[5]]
+	else:
+		rowData['players'] = [elementNames[3], elementNames[4]]
+	
+	selectNext = False
+	for name, element in elements.items():
+		if selectNext and element.text.count(' ') == 0:
+			rowData['battleID'] = element.text[1:]
+			break
+		if name.count(' 2 on ') > 0:
+			selectNext = True
+	return elementNames[1], rowData
+
+
+def GetRoomTable(driver):
+	tables = driver.find_elements(By.TAG_NAME, 'table')
+	elements = False
+	for table in tables:
+		if table.text.count('Force join') > 0:
+			elements = table.find_elements(By.XPATH, ".//*")
+			break
+	if elements is False:
+		return
+
+	rows = {}
+	for e in elements:
+		if e.text.count(prefix) == 1 and e.text.count('Force join') == 1:
+			name, rowData = ProcessTableRow(e)
+			rows[name] = rowData
+	return rows
+
+
+def InitializeState():
 	if os.path.isfile(stateFile + '.json'):
 		state = ReadState()
 		return state
+	players = LoadFileToList(playerListFile)
+	roomNames = LoadFileToList(roomListFile)
+	random.shuffle(players)
+	
 	state = {
 		'queue' : players,
 		'maxQueueLength' : 2,
@@ -139,6 +191,25 @@ def MakeRooms(driver, roomsToMake):
 		By.XPATH,
 		'//input[@type="submit" and @value="Create Battles" and contains(@class, "js_confirm")]')
 	createBattles.click()
+	alert = Alert(driver)
+	alert.accept()
+	
+	joinAttempts = {name : 0 in roomsToMake.keys()}
+	tryForceJoin = True
+	while tryForceJoin:
+		driver.implicitly_wait(0.5)
+		tryForceJoin = False
+		rows = GetRoomTable(driver)
+		for name, rowData in rows.items():
+			if name in roomsToMake:
+				if 'forceJoin' in rowData and not rowData['playersJoined'] and joinAttempts[name] < 4:
+					print('Force joining', name)
+					rowData['forceJoin'].click()
+					joinAttempts[name] = joinAttempts[name] + 1
+					driver.implicitly_wait(0.5 * joinAttempts[name])
+					tryForceJoin = True
+					break
+	return {n : (v < 4) for n, v in joinAttempts.items()}
 
 
 def SetupRequiredRooms(driver, state):
@@ -147,24 +218,26 @@ def SetupRequiredRooms(driver, state):
 		room = FindRoomForPlayers(state, state['queue'][:2])
 		room['index'] = room['index'] + 1
 		room['players'] = state['queue'][:2]
-		room['createdName'] = 'FC {} {}'.format(room['name'], room['index'])
+		room['createdName'] = '{}{} {}'.format(prefix, room['name'], room['index'])
 		rooms[room['createdName']] = state['queue'][:2]
 		state['queue'] = state['queue'][2:]
 		print('Adding room "{}": {} vs {}'.format(
 			room['createdName'], room['players'][0], room['players'][1]))
 	
 	if len(rooms) > 0:
-		MakeRooms(driver, rooms)
+		success = MakeRooms(driver, rooms)
 	return state
 
 
-def HandleRoomFinish(state, room):
+def HandleRoomFinish(state, room, winner=False):
 	if room not in state['rooms']:
 		return state
 	roomData = state['rooms'][room]
 	if roomData['finished']:
 		return state
-	winner = GetListInput('Who won?', roomData['players'])
+	
+	if winner is False:
+		winner = GetListInput('Who won?', roomData['players'])
 	loser  = ListRemove(roomData['players'], winner)[0]
 	
 	roomData['finished'] = True
@@ -174,24 +247,44 @@ def HandleRoomFinish(state, room):
 	return state
 
 
-players = LoadFileToList(playerListFile)
-roomNames = LoadFileToList(roomListFile)
-random.shuffle(players)
-print('Initial players', players)
-print('roomNames', roomNames)
+def GetBattleWinner(driver, battleID):
+	print('Checking battle "{}"'.format(battleID))
+	driver.get('https://zero-k.info/Battles/Detail/{}?ShowWinners=True'.format(battleID))
+	driver.implicitly_wait(0.5)
+	
+	winnerBox = driver.find_element(By.CLASS_NAME, 'fleft.battle_winner')
+	elements = winnerBox.find_elements(By.XPATH, ".//*")
+	userNameBox = winnerBox.find_element(By.CSS_SELECTOR, "a[href^='/Users/Detail/']")
+	return userNameBox.text
 
-state  = InitializeState(players, roomNames)
+
+def UpdateGameState(driver, state):
+	pageRooms = GetRoomTable(driver)
+	needReturnToPage = False
+	for baseName, roomData in state['rooms'].items():
+		if 'createdName' in roomData and roomData['createdName'] in pageRooms:
+			pageData = pageRooms[roomData['createdName']]
+			if 'battleID' in pageData and (not roomData['finished']):
+				winner = GetBattleWinner(driver, pageData['battleID'])
+				state = HandleRoomFinish(state, baseName, winner=winner)
+				needReturnToPage = True
+	
+	if needReturnToPage:
+		driver.get('https://zero-k.info/Tourney')
+		driver.implicitly_wait(0.5)
+	return state
+
+state  = InitializeState()
 driver = InitialiseWebDriver()
 
 while True:
+	print('========== Updates ==========')
+	state = UpdateGameState(driver, state)
 	state = SetupRequiredRooms(driver, state)
-	print('====================================')
+	
+	print('=========== State ===========')
 	PrintState(state)
 	
+	#time.sleep(10)
 	WriteState(state)
-	runningRooms = [name for name, data in state['rooms'].items() if not data['finished']]
-	response = GetListInput('Which room finished?', runningRooms)
-	state = ReadState()
-	
-	state = HandleRoomFinish(state, response)
-	print('Queue: {}'.format(state['queue']))
+	input('Press enter')
