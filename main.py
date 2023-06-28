@@ -5,7 +5,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 import pprint
 import json
+
 import time
+import threading
+import logging
+
+import tkinter as tk
 
 pp = pprint.PrettyPrinter(depth=4)
 
@@ -14,6 +19,15 @@ roomListFile = '../roomNames'
 stateFile = '../state'
 loginFile = '../loginDetails'
 prefix = 'FC '
+
+pauseMain = True
+killMain  = False
+statusString = False
+addString = False
+removeString = False
+playersToAdd = []
+playersToRemove = []
+wantSuddenDeath = False
 
 
 def WriteState(state):
@@ -194,7 +208,7 @@ def MakeRooms(driver, roomsToMake):
 	alert = Alert(driver)
 	alert.accept()
 	
-	joinAttempts = {name : 0 in roomsToMake.keys()}
+	joinAttempts = {}
 	tryForceJoin = True
 	while tryForceJoin:
 		driver.implicitly_wait(0.5)
@@ -202,8 +216,10 @@ def MakeRooms(driver, roomsToMake):
 		rows = GetRoomTable(driver)
 		for name, rowData in rows.items():
 			if name in roomsToMake:
+				if name not in joinAttempts:
+					joinAttempts[name] = 0
 				if 'forceJoin' in rowData and not rowData['playersJoined'] and joinAttempts[name] < 4:
-					print('Force joining', name)
+					print('Force joining ' + name)
 					rowData['forceJoin'].click()
 					joinAttempts[name] = joinAttempts[name] + 1
 					driver.implicitly_wait(0.5 * joinAttempts[name])
@@ -259,6 +275,9 @@ def GetBattleWinner(driver, battleID):
 
 
 def UpdateGameState(driver, state):
+	driver.get('https://zero-k.info/Tourney') # Refresh page
+	driver.implicitly_wait(0.5)
+
 	pageRooms = GetRoomTable(driver)
 	needReturnToPage = False
 	for baseName, roomData in state['rooms'].items():
@@ -274,17 +293,158 @@ def UpdateGameState(driver, state):
 		driver.implicitly_wait(0.5)
 	return state
 
-state  = InitializeState()
-driver = InitialiseWebDriver()
 
-while True:
-	print('========== Updates ==========')
-	state = UpdateGameState(driver, state)
-	state = SetupRequiredRooms(driver, state)
-	
-	print('=========== State ===========')
+def CheckAddOrRemovePlayers(state):
+	global playersToAdd, playersToRemove, addString, removeString
+	if len(playersToAdd) > 0:
+		state['queue'] = state['queue'] + playersToAdd
+		playersToAdd = []
+		if addString is not False:
+			addString.set('')
+	return state
+
+
+def WriteAndPause(state):
 	PrintState(state)
-	
-	#time.sleep(10)
 	WriteState(state)
-	input('Press enter')
+	time.sleep(10)
+	while pauseMain:
+		time.sleep(1)
+	state = ReadState()
+	state = CheckAddOrRemovePlayers(state)
+	return state
+
+
+def AutonomousUpdateThread():
+	state = InitializeState()
+	driver = InitialiseWebDriver()
+	print('Main thread started')
+	while (not killMain):
+		state = WriteAndPause(state)
+		state = SetupRequiredRooms(driver, state)	
+		print('=========== Rooms Created ===========')
+		PrintState(state)
+	
+		state = WriteAndPause(state)
+		state = UpdateGameState(driver, state)
+		print('=========== State Updated ===========')
+
+def TestThread():
+	while (not killMain):
+		print('pauseMain', pauseMain)
+		time.sleep(1)
+
+
+def SetupWindow():
+	global statusString, addString, removeString
+	global playersToAdd, playersToRemove
+	window = tk.Tk()
+	
+	statusString = tk.StringVar()
+	statusString.set("Status")
+	
+	pauseString = tk.StringVar()
+	pauseString.set("PAUSED")
+	
+	addString = tk.StringVar()
+	addString.set("")
+	removeString = tk.StringVar()
+	removeString.set("")
+	
+	def Resume():
+		global pauseMain
+		pauseMain = False
+		pauseString.set("ACTIVE")
+		
+	def Pause():
+		global pauseMain
+		pauseMain = True
+		pauseString.set("PAUSED")
+	
+	def AddPlayer():
+		name = txtfld.get()
+		if len(name) > 0 and name not in playersToAdd:
+			playersToAdd.append(name)
+			addString.set('Adding: ' + str(playersToAdd))
+	
+	def RemovePlayer():
+		name = txtfld.get()
+		if len(name) > 0 and name not in playersToRemove:
+			playersToRemove.append(name)
+			removeString.set('Removing: ' + str(playersToRemove))
+	
+	offset = 20
+	labelSpacing = 40
+	spacing = 50
+	fontSmall = ("Helvetica", 12)
+	font      = ("Helvetica", 16)
+	fontBig   = ("Helvetica", 24)
+	
+	label = tk.Label(window, textvariable=pauseString, font=fontBig, justify=tk.LEFT)
+	label.place(x=20, y=offset)
+	offset = offset + spacing
+	
+	btn = tk.Button(window, text="Pause", fg='blue', command=Pause, font=font, width=8)
+	btn.place(x=20, y=offset)
+	btn = tk.Button(window, text="Resume", fg='blue', command=Resume, font=font, width=8)
+	btn.place(x=140, y=offset)
+	offset = offset + spacing
+	
+	btn = tk.Button(window, text="Add", fg='blue', command=AddPlayer, font=font, width=8)
+	btn.place(x=20, y=offset)
+	btn = tk.Button(window, text="Remove", fg='blue', command=RemovePlayer, font=font, width=8)
+	btn.place(x=140, y=offset)
+	
+	label = tk.Label(window, textvariable=addString, font=fontSmall, justify=tk.LEFT)
+	label.place(x=260, y=offset)
+	label = tk.Label(window, textvariable=removeString, font=fontSmall, justify=tk.LEFT)
+	label.place(x=260, y=offset + 40)
+	
+	offset = offset + spacing
+	
+	txtfld = tk.Entry(window, text="Player Names", bd=5, font=font, width=18)
+	txtfld.place(x=20, y=offset)
+	offset = offset + labelSpacing
+	
+	label = tk.Label(window, textvariable=statusString, font=font, justify=tk.LEFT)
+	label.place(x=20, y=offset)
+	offset = offset + spacing
+	
+	window.title('Tournament Bot')
+	window.geometry("500x500+1050+200")
+	window.mainloop()
+	
+	pauseMain = True
+	killMain = True
+
+
+def SetupThreads():
+	mainThread = threading.Thread(target=AutonomousUpdateThread)
+	mainThread.daemon = True
+	mainThread.start()
+	
+	SetupWindow()
+
+
+def DoManualMode():
+	state = InitializeState()
+	driver = InitialiseWebDriver()
+	
+	while True:
+		state = ReadState()
+		state = SetupRequiredRooms(driver, state)
+		WriteState(state)
+		print('=========== Rooms Created ===========')
+		PrintState(state)
+		input('Press enter')
+			
+		state = ReadState()
+		state = UpdateGameState(driver, state)
+		WriteState(state)
+		print('=========== State Updated ===========')
+		PrintState(state)
+		input('Press enter')
+	
+SetupThreads()
+#DoManualMode()
+
