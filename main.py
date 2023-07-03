@@ -30,6 +30,9 @@ playersToRemove = []
 wantSuddenDeath = False
 forceUpdate = 0
 
+CYCLE_PERIOD = 10
+WANT_FILL = '_WANT_FILL_'
+
 state = {}
 
 def WriteState(state):
@@ -197,6 +200,12 @@ def FindRoomForPlayers(state, players):
 	return False
 
 
+def ReplaceWantFill(state, player):
+	fillIndex = [i for i, x in enumerate(state['queue']) if x == WANT_FILL][0]
+	state['queue'][fillIndex] = player
+	return state
+
+
 def MakeRooms(driver, roomsToMake):
 	roomStr = ''
 	first = True
@@ -240,7 +249,7 @@ def MakeRooms(driver, roomsToMake):
 
 def SetupRequiredRooms(driver, state):
 	rooms = {}
-	while len(state['queue']) > state['maxQueueLength']:
+	while (len(state['queue']) > state['maxQueueLength']) and (WANT_FILL not in state['queue'][:2]):
 		room = FindRoomForPlayers(state, state['queue'][:2])
 		room['index'] = room['index'] + 1
 		room['players'] = state['queue'][:2]
@@ -285,13 +294,19 @@ def HandleRoomFinish(state, room, battleID, winner=False):
 	forumLink = '@B{}'.format(battleID)
 	
 	roomData['finished'] = True
-	state['toDelete'].append(room['createdName'])
-	state['queue'] = [winner] + state['queue'] + [loser]
+	state['toDelete'].append(roomData['createdName'])
+	if len(state['queue']) == 0:
+		state['queue'] = [winner, WANT_FILL, loser]
+	elif WANT_FILL in state['queue']:
+		state = ReplaceWantFill(state, winner)
+		state['queue'] = state['queue'] + [loser]
+	else:
+		state['queue'] = [winner] + state['queue'] + [loser]
 	state['playerRoomPreference'][winner] = room
 	state['playerRoomPreference'] = DictRemove(state['playerRoomPreference'], loser)
 	state['completedGames'][forumLink] = {
 		'series' : room,
-		'name'   : roomData.createdName,
+		'name'   : roomData['createdName'],
 		'winner' : winner,
 		'lower'  : loser,
 	}
@@ -319,7 +334,6 @@ def UpdateGameState(driver, state):
 		return state
 	
 	for baseName, roomData in state['rooms'].items():
-		print(roomData)
 		if 'createdName' in roomData and roomData['createdName'] in pageRooms:
 			pageData = pageRooms[roomData['createdName']]
 			if 'battleID' in pageData and (not roomData['finished']):
@@ -349,7 +363,11 @@ def RemovePlayerFromState(state, player):
 def CheckAddOrRemovePlayers(state):
 	global playersToAdd, playersToRemove, addString, removeString
 	if len(playersToAdd) > 0:
-		state['queue'] = state['queue'] + playersToAdd
+		if WANT_FILL in state['queue']:
+			state = ReplaceWantFill(state, playersToAdd[0])
+			state['queue'] = state['queue'] + playersToAdd[1:]
+		else:
+			state['queue'] = state['queue'] + playersToAdd
 		playersToAdd = []
 		if addString is not False:
 			addString.set('')
@@ -367,7 +385,7 @@ def WriteAndPause(state):
 	PrintState(state)
 	WriteState(state)
 	updateTimer = 0
-	while pauseMain or (updateTimer < 10 and forceUpdate == 0):
+	while pauseMain or (updateTimer < CYCLE_PERIOD and forceUpdate == 0):
 		time.sleep(0.5)
 		updateTimer = updateTimer + 0.5
 	forceUpdate = max(0, forceUpdate - 1)
@@ -461,11 +479,9 @@ def SetupWindow():
 	
 	def TabPressed(event):
 		global lastTextString, lastPlayerNames, tabIndex
-		print('bla')
 		name = txtfld.get()
 		if len(name) == 0 or state is False:
 			return 'break'
-		print(lastTextString)
 		if name != lastTextString:
 			playerNames = state['queue'].copy()
 			for room, roomData in state['rooms'].items():
