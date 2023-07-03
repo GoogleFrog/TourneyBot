@@ -28,6 +28,7 @@ removeString = False
 playersToAdd = []
 playersToRemove = []
 wantSuddenDeath = False
+forceUpdate = 0
 
 state = {}
 
@@ -362,11 +363,14 @@ def CheckAddOrRemovePlayers(state):
 
 
 def WriteAndPause(state):
+	global forceUpdate
 	PrintState(state)
 	WriteState(state)
-	time.sleep(10)
-	while pauseMain:
-		time.sleep(1)
+	updateTimer = 0
+	while pauseMain or (updateTimer < 10 and forceUpdate == 0):
+		time.sleep(0.5)
+		updateTimer = updateTimer + 0.5
+	forceUpdate = max(0, forceUpdate - 1)
 	state = ReadState()
 	state = CheckAddOrRemovePlayers(state)
 	return state
@@ -400,6 +404,10 @@ def TestThread():
 		time.sleep(1)
 
 
+lastTextString = False
+lastPlayerNames = False
+tabIndex = 0
+
 def SetupWindow():
 	global statusString, addString, removeString
 	global playersToAdd, playersToRemove
@@ -417,8 +425,9 @@ def SetupWindow():
 	removeString.set("")
 	
 	def Resume():
-		global pauseMain
+		global pauseMain, forceUpdate
 		pauseMain = False
+		forceUpdate = 2
 		pauseString.set("ACTIVE")
 		
 	def Pause():
@@ -427,24 +436,57 @@ def SetupWindow():
 		pauseString.set("PAUSED")
 	
 	def AddPlayer():
+		global forceUpdate
 		name = txtfld.get()
 		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToAdd:
 			playersToAdd.append(name)
 			addString.set('Adding: ' + str(playersToAdd))
+			forceUpdate = 2
 	
 	def RemovePlayer():
+		global forceUpdate
 		name = txtfld.get()
 		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToRemove:
 			playersToRemove.append(name)
 			removeString.set('Removing: ' + str(playersToRemove))
+			forceUpdate = 2
 	
 	def PrintBattles():
 		global state
 		print('Battle Links')
 		for name in list(state['completedGames'].keys()):
 			print(name)
+	
+	def TabPressed(event):
+		global lastTextString, lastPlayerNames, tabIndex
+		print('bla')
+		name = txtfld.get()
+		if len(name) == 0 or state is False:
+			return 'break'
+		print(lastTextString)
+		if name != lastTextString:
+			playerNames = state['queue'].copy()
+			for room, roomData in state['rooms'].items():
+				if 'players' in roomData:
+					playerNames = playerNames + roomData['players']
+			playerNames = list(set(playerNames))
+			playerNames = [x for x in playerNames if name in x]
+			if len(playerNames) == 0:
+				return 'break'
+			lastPlayerNames = playerNames
+			tabIndex = 0
+		else:
+			playerNames = lastPlayerNames
+			tabIndex = (tabIndex + 1)%len(playerNames)
+		
+		lastTextString = playerNames[tabIndex]
+		txtfld.delete(0, tk.END)
+		txtfld.insert(0, lastTextString)
+		return 'break'
+
+	window.bind("<Tab>", TabPressed)
 	
 	offset = 20
 	labelSpacing = 40
