@@ -29,6 +29,7 @@ playersToAdd = []
 playersToRemove = []
 wantSuddenDeath = False
 
+state = {}
 
 def WriteState(state):
 	with open(stateFile + '.json', 'w') as outfile:
@@ -134,7 +135,7 @@ def GetRoomTable(driver):
 			elements = table.find_elements(By.XPATH, ".//*")
 			break
 	if elements is False:
-		return
+		return False
 
 	rows = {}
 	for e in elements:
@@ -156,22 +157,29 @@ def InitializeState():
 		'queue' : players,
 		'maxQueueLength' : 2,
 		'playerRoomPreference' : {},
+		'toDelete' : [],
 		'rooms' : {name : {
 			'name' : name,
 			'index' : 0,
 			'finished' : True,
 		} for name in roomNames},
+		'completedGames' : {},
 	}
 	WriteState(state)
 	return state
 
 
 def PrintState(state):
+	global statusString
 	runningRooms = [data for name, data in state['rooms'].items() if not data['finished']]
+	status = 'Queue: {}'.format(state['queue'])
+	print(status)
 	for room in runningRooms:
-		print('Running: "{}": {} vs {}'.format(
-			room['createdName'], room['players'][0], room['players'][1]))
-	print('Queue: {}'.format(state['queue']))
+		roomSummary = '{}: {} vs {}'.format(
+			room['createdName'], room['players'][0], room['players'][1])
+		status = status + '\n' + roomSummary
+		print('Running: ' + roomSummary)
+	statusString.set(status)
 
 
 def FindRoomForPlayers(state, players):
@@ -205,6 +213,7 @@ def MakeRooms(driver, roomsToMake):
 		By.XPATH,
 		'//input[@type="submit" and @value="Create Battles" and contains(@class, "js_confirm")]')
 	createBattles.click()
+	
 	alert = Alert(driver)
 	alert.accept()
 	
@@ -245,7 +254,24 @@ def SetupRequiredRooms(driver, state):
 	return state
 
 
-def HandleRoomFinish(state, room, winner=False):
+def CleanUpRooms(driver, state):
+	if len(state['toDelete']) == 0:
+		return state
+	
+	for roomName in state['toDelete']:
+		pageRooms = GetRoomTable(driver)
+		print('Trying to delete', roomName)
+		if (pageRooms is not False) and (roomName in pageRooms) and ('delete' in pageRooms[roomName]):
+			print('Deleting', roomName)
+			pageRooms[roomName]['delete'].click()
+			alert = Alert(driver)
+			alert.accept()
+			driver.implicitly_wait(0.5)
+			state['toDelete'].remove(roomName)
+	return state
+
+
+def HandleRoomFinish(state, room, battleID, winner=False):
 	if room not in state['rooms']:
 		return state
 	roomData = state['rooms'][room]
@@ -254,12 +280,20 @@ def HandleRoomFinish(state, room, winner=False):
 	
 	if winner is False:
 		winner = GetListInput('Who won?', roomData['players'])
-	loser  = ListRemove(roomData['players'], winner)[0]
+	loser     = ListRemove(roomData['players'], winner)[0]
+	forumLink = '@B{}'.format(battleID)
 	
 	roomData['finished'] = True
+	state['toDelete'].append(room['createdName'])
 	state['queue'] = [winner] + state['queue'] + [loser]
 	state['playerRoomPreference'][winner] = room
 	state['playerRoomPreference'] = DictRemove(state['playerRoomPreference'], loser)
+	state['completedGames'][forumLink] = {
+		'series' : room,
+		'name'   : roomData.createdName,
+		'winner' : winner,
+		'lower'  : loser,
+	}
 	return state
 
 
@@ -280,18 +314,35 @@ def UpdateGameState(driver, state):
 
 	pageRooms = GetRoomTable(driver)
 	needReturnToPage = False
+	if pageRooms is False:
+		return state
+	
 	for baseName, roomData in state['rooms'].items():
+		print(roomData)
 		if 'createdName' in roomData and roomData['createdName'] in pageRooms:
 			pageData = pageRooms[roomData['createdName']]
 			if 'battleID' in pageData and (not roomData['finished']):
 				winner = GetBattleWinner(driver, pageData['battleID'])
-				state = HandleRoomFinish(state, baseName, winner=winner)
+				state = HandleRoomFinish(state, baseName, pageData['battleID'], winner=winner)
 				needReturnToPage = True
 	
 	if needReturnToPage:
 		driver.get('https://zero-k.info/Tourney')
 		driver.implicitly_wait(0.5)
 	return state
+
+
+def RemovePlayerFromState(state, player):
+	if player in state['queue']:
+		state['queue'].remove(player)
+		return state
+	for name, roomData in state['rooms'].items():
+		if player in roomData['players']:
+			roomData['finished'] = True
+			state['toDelete'].append(roomData['createdName'])
+			otherPlayer = ListRemove(roomData['players'], player)[0]
+			state['queue'] = [otherPlayer] + state['queue']
+			return state
 
 
 def CheckAddOrRemovePlayers(state):
@@ -301,6 +352,12 @@ def CheckAddOrRemovePlayers(state):
 		playersToAdd = []
 		if addString is not False:
 			addString.set('')
+	if len(playersToRemove) > 0:
+		for player in playersToRemove:
+			RemovePlayerFromState(state, player)
+		playersToRemove = []
+		if removeString is not False:
+			removeString.set('')
 	return state
 
 
@@ -316,18 +373,26 @@ def WriteAndPause(state):
 
 
 def AutonomousUpdateThread():
+	global state
 	state = InitializeState()
 	driver = InitialiseWebDriver()
 	print('Main thread started')
 	while (not killMain):
 		state = WriteAndPause(state)
-		state = SetupRequiredRooms(driver, state)	
+		if killMain:
+			return
+		state = SetupRequiredRooms(driver, state)
 		print('=========== Rooms Created ===========')
+		state = CleanUpRooms(driver, state)
+		print('=========== Rooms Deleted ===========')
 		PrintState(state)
 	
 		state = WriteAndPause(state)
+		if killMain:
+			return
 		state = UpdateGameState(driver, state)
 		print('=========== State Updated ===========')
+
 
 def TestThread():
 	while (not killMain):
@@ -363,15 +428,23 @@ def SetupWindow():
 	
 	def AddPlayer():
 		name = txtfld.get()
+		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToAdd:
 			playersToAdd.append(name)
 			addString.set('Adding: ' + str(playersToAdd))
 	
 	def RemovePlayer():
 		name = txtfld.get()
+		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToRemove:
 			playersToRemove.append(name)
 			removeString.set('Removing: ' + str(playersToRemove))
+	
+	def PrintBattles():
+		global state
+		print('Battle Links')
+		for name in list(state['completedGames'].keys()):
+			print(name)
 	
 	offset = 20
 	labelSpacing = 40
@@ -382,11 +455,13 @@ def SetupWindow():
 	
 	label = tk.Label(window, textvariable=pauseString, font=fontBig, justify=tk.LEFT)
 	label.place(x=20, y=offset)
+	btn = tk.Button(window, text="Print", fg='blue', command=PrintBattles, font=font, width=8)
+	btn.place(x=260, y=offset)
 	offset = offset + spacing
 	
-	btn = tk.Button(window, text="Pause", fg='blue', command=Pause, font=font, width=8)
-	btn.place(x=20, y=offset)
 	btn = tk.Button(window, text="Resume", fg='blue', command=Resume, font=font, width=8)
+	btn.place(x=20, y=offset)
+	btn = tk.Button(window, text="Pause", fg='blue', command=Pause, font=font, width=8)
 	btn.place(x=140, y=offset)
 	offset = offset + spacing
 	
@@ -416,6 +491,7 @@ def SetupWindow():
 	
 	pauseMain = True
 	killMain = True
+	PrintBattles()
 
 
 def SetupThreads():
