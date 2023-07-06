@@ -23,15 +23,14 @@ prefix = 'FC '
 pauseMain = True
 killMain  = False
 statusString = False
-addString = False
-removeString = False
+addRemoveString = False
 playersToAdd = []
 playersToRemove = []
+playersToRemoveQueueOnly = []
 wantSuddenDeath = False
 forceUpdate = 0
 
-CYCLE_PERIOD = 10
-WANT_FILL = '_WANT_FILL_'
+WANT_FILL = 'empty.'
 
 state = {}
 
@@ -49,6 +48,11 @@ def LoadFileToList(fileName):
 	with open('{}.txt'.format(fileName)) as file:
 	    lines = [line.rstrip() for line in file]
 	return lines
+
+def Opt(table, parameter, default=False):
+	if parameter in table:
+		return table[parameter]
+	return default
 
 
 def ListRemove(myList, element):
@@ -159,7 +163,11 @@ def InitializeState():
 	
 	state = {
 		'queue' : players,
-		'maxQueueLength' : 2,
+		'defaultMaxQueueLength' : 2,
+		'maxQueueLength' : 1,
+		'maxQueueLengthTimer' : 1,
+		"postReadTimer"  : 8,
+		"postSetupTimer" : 8,
 		'playerRoomPreference' : {},
 		'toDelete' : [],
 		'rooms' : {name : {
@@ -185,6 +193,72 @@ def PrintState(state):
 		print('Running: ' + roomSummary)
 	statusString.set(status)
 
+
+def UpdateAddRemoveString():
+	global addRemoveString
+	newStr = ''
+	if len(playersToAdd) > 0:
+		newStr = newStr + 'Adding: ' + str(playersToAdd) + '\n'
+	if len(playersToRemove) > 0:
+		newStr = newStr + 'Force Remove: ' + str(playersToRemove) + '\n'
+	if len(playersToRemoveQueueOnly) > 0:
+		newStr = newStr + 'Queue Remove: ' + str(playersToRemoveQueueOnly) + '\n'
+	addRemoveString.set(newStr)
+
+
+def PrintBattles():
+	if state is False:
+		return
+	print('Battle Links')
+	for name in list(state['completedGames'].keys()):
+		print(name)
+	
+	# Print King of the X win stats
+	for series in state['rooms'].keys():
+		wins = {}
+		totalGames = 0
+		for battleID, game in state['completedGames'].items():
+			if game['series'] == series:
+				wins[game['winner']] = Opt(wins, game['winner'], 0) + 1
+				totalGames = totalGames + 1
+		wins = sorted(wins.items(), key=lambda x : x[1], reverse=True)
+		if len(wins) > 0:
+			winners = [x[0] for x in wins if wins[0][1] == x[1]]
+			winnerStr = ' and '.join(winners)
+			print(' * King of the {}: @{} ({} wins out of {} games overall)'.format(series, winnerStr, wins[0][1], totalGames)) 
+		
+	# Print game stats
+	playerWins = {}
+	playerLosses = {}
+	for battleID, game in state['completedGames'].items():
+		playerWins[game['winner']] = Opt(playerWins, game['winner'], 0) + 1
+		playerLosses[game['loser']] = Opt(playerLosses, game['loser'], 0) + 1
+	players = list(set(list(playerWins.keys()) + list(playerLosses.keys())))
+	players = sorted(players, key=lambda x : (
+		Opt(playerWins, x, 0) + 0.001*Opt(playerLosses, x, 0)),
+		reverse=True)
+	for playerName in players:
+		print(' * @{}: {} wins, {} games'.format(
+			playerName,
+			Opt(playerWins, playerName, 0),
+			Opt(playerWins, playerName, 0) + Opt(playerLosses, playerName, 0))
+		)
+	
+	# Print matchups.
+	match = {}
+	for battleID, game in state['completedGames'].items():
+		players = [game['winner'], game['loser']]
+		players = '.'.join(sorted(players))
+		if players not in match:
+			match[players] = {game['winner'] : 0, game['loser'] : 0}
+		match[players][game['winner']] += 1
+	matchOrder = sorted(list(match.keys()),  key=lambda x : (
+		list(match[x].values())[0] + list(match[x].values())[1]),
+		reverse=True
+	)
+	for matchup in matchOrder:
+		print(match[matchup])
+			
 
 def FindRoomForPlayers(state, players):
 	checkRooms = []
@@ -260,6 +334,11 @@ def SetupRequiredRooms(driver, state):
 			room['createdName'], room['players'][0], room['players'][1]))
 	
 	if len(rooms) > 0:
+		if state['maxQueueLengthTimer'] is not False:
+			state['maxQueueLengthTimer'] = state['maxQueueLengthTimer'] - 1
+			if state['maxQueueLengthTimer'] <= 0:
+				state['maxQueueLength'] = state['defaultMaxQueueLength']
+				state['maxQueueLengthTimer'] = False
 		success = MakeRooms(driver, rooms)
 	return state
 
@@ -308,7 +387,7 @@ def HandleRoomFinish(state, room, battleID, winner=False):
 		'series' : room,
 		'name'   : roomData['createdName'],
 		'winner' : winner,
-		'lower'  : loser,
+		'loser'  : loser,
 	}
 	return state
 
@@ -361,7 +440,7 @@ def RemovePlayerFromState(state, player):
 
 
 def CheckAddOrRemovePlayers(state):
-	global playersToAdd, playersToRemove, addString, removeString
+	global playersToAdd, playersToRemove, playersToRemoveQueueOnly, addRemoveString
 	if len(playersToAdd) > 0:
 		if WANT_FILL in state['queue']:
 			state = ReplaceWantFill(state, playersToAdd[0])
@@ -369,23 +448,34 @@ def CheckAddOrRemovePlayers(state):
 		else:
 			state['queue'] = state['queue'] + playersToAdd
 		playersToAdd = []
-		if addString is not False:
-			addString.set('')
+		if addRemoveString is not False:
+			UpdateAddRemoveString()
+			
 	if len(playersToRemove) > 0:
 		for player in playersToRemove:
 			RemovePlayerFromState(state, player)
 		playersToRemove = []
-		if removeString is not False:
-			removeString.set('')
+		if addRemoveString is not False:
+			UpdateAddRemoveString()
+			
+	if len(playersToRemoveQueueOnly) > 0:
+		changed = False
+		for player in playersToRemoveQueueOnly:
+			if player in state['queue']:
+				RemovePlayerFromState(state, player)
+				playersToRemoveQueueOnly = ListRemove(playersToRemoveQueueOnly, player)
+				changed = True
+		if changed and (addRemoveString is not False):
+			UpdateAddRemoveString()
 	return state
 
 
-def WriteAndPause(state):
+def WriteAndPause(state, waitTime):
 	global forceUpdate
 	PrintState(state)
 	WriteState(state)
 	updateTimer = 0
-	while pauseMain or (updateTimer < CYCLE_PERIOD and forceUpdate == 0):
+	while pauseMain or (updateTimer < waitTime and forceUpdate == 0):
 		time.sleep(0.5)
 		updateTimer = updateTimer + 0.5
 	forceUpdate = max(0, forceUpdate - 1)
@@ -400,7 +490,7 @@ def AutonomousUpdateThread():
 	driver = InitialiseWebDriver()
 	print('Main thread started')
 	while (not killMain):
-		state = WriteAndPause(state)
+		state = WriteAndPause(state, state['postReadTimer'])
 		if killMain:
 			return
 		state = SetupRequiredRooms(driver, state)
@@ -409,7 +499,7 @@ def AutonomousUpdateThread():
 		print('=========== Rooms Deleted ===========')
 		PrintState(state)
 	
-		state = WriteAndPause(state)
+		state = WriteAndPause(state, state['postSetupTimer'])
 		if killMain:
 			return
 		state = UpdateGameState(driver, state)
@@ -427,8 +517,8 @@ lastPlayerNames = False
 tabIndex = 0
 
 def SetupWindow():
-	global statusString, addString, removeString
-	global playersToAdd, playersToRemove
+	global statusString, addRemoveString
+	global playersToAdd, playersToRemove, playersToRemoveQueueOnly
 	window = tk.Tk()
 	
 	statusString = tk.StringVar()
@@ -437,10 +527,8 @@ def SetupWindow():
 	pauseString = tk.StringVar()
 	pauseString.set("PAUSED")
 	
-	addString = tk.StringVar()
-	addString.set("")
-	removeString = tk.StringVar()
-	removeString.set("")
+	addRemoveString = tk.StringVar()
+	addRemoveString.set("")
 	
 	def Resume():
 		global pauseMain, forceUpdate
@@ -459,7 +547,7 @@ def SetupWindow():
 		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToAdd:
 			playersToAdd.append(name)
-			addString.set('Adding: ' + str(playersToAdd))
+			UpdateAddRemoveString()
 			forceUpdate = 2
 	
 	def RemovePlayer():
@@ -468,14 +556,17 @@ def SetupWindow():
 		txtfld.delete(0, tk.END)
 		if len(name) > 0 and name not in playersToRemove:
 			playersToRemove.append(name)
-			removeString.set('Removing: ' + str(playersToRemove))
+			UpdateAddRemoveString()
 			forceUpdate = 2
 	
-	def PrintBattles():
-		global state
-		print('Battle Links')
-		for name in list(state['completedGames'].keys()):
-			print(name)
+	def RemovePlayerQueueOnly():
+		global forceUpdate
+		name = txtfld.get()
+		txtfld.delete(0, tk.END)
+		if len(name) > 0 and name not in playersToRemoveQueueOnly:
+			playersToRemoveQueueOnly.append(name)
+			UpdateAddRemoveString()
+			forceUpdate = 2
 	
 	def TabPressed(event):
 		global lastTextString, lastPlayerNames, tabIndex
@@ -513,25 +604,25 @@ def SetupWindow():
 	
 	label = tk.Label(window, textvariable=pauseString, font=fontBig, justify=tk.LEFT)
 	label.place(x=20, y=offset)
-	btn = tk.Button(window, text="Print", fg='blue', command=PrintBattles, font=font, width=8)
-	btn.place(x=260, y=offset)
 	offset = offset + spacing
 	
 	btn = tk.Button(window, text="Resume", fg='blue', command=Resume, font=font, width=8)
 	btn.place(x=20, y=offset)
 	btn = tk.Button(window, text="Pause", fg='blue', command=Pause, font=font, width=8)
 	btn.place(x=140, y=offset)
+	btn = tk.Button(window, text="Print Stats", fg='blue', command=PrintBattles, font=font, width=12)
+	btn.place(x=260, y=offset)
 	offset = offset + spacing
 	
 	btn = tk.Button(window, text="Add", fg='blue', command=AddPlayer, font=font, width=8)
 	btn.place(x=20, y=offset)
-	btn = tk.Button(window, text="Remove", fg='blue', command=RemovePlayer, font=font, width=8)
+	btn = tk.Button(window, text="Remove", fg='blue', command=RemovePlayerQueueOnly, font=font, width=8)
 	btn.place(x=140, y=offset)
+	btn = tk.Button(window, text="Force Remove", fg='blue', command=RemovePlayer, font=font, width=12)
+	btn.place(x=260, y=offset)
 	
-	label = tk.Label(window, textvariable=addString, font=fontSmall, justify=tk.LEFT)
-	label.place(x=260, y=offset)
-	label = tk.Label(window, textvariable=removeString, font=fontSmall, justify=tk.LEFT)
-	label.place(x=260, y=offset + 40)
+	label = tk.Label(window, textvariable=addRemoveString, font=fontSmall, justify=tk.LEFT)
+	label.place(x=260, y=offset + 45)
 	
 	offset = offset + spacing
 	

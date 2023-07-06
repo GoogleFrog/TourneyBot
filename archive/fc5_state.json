@@ -1,0 +1,320 @@
+{
+    "queue": [
+        "StiofanKingofAwoo",
+        "RiposteR",
+        "Fine",
+        "Skel",
+        "Steel_Blue",
+        "Anarchid"
+    ],
+    "defaultMaxQueueLength": 100,
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "postReadTimer": 8,
+    "postSetupTimer": 8,
+    "playerRoomPreference": {
+        "RiposteR": "Arena",
+        "StiofanKingofAwoo": "Throne",
+        "cooolcat1239": "Road",
+        "Bitterly": "Castle",
+        "therxyy": "Hill"
+    },
+    "toDelete": [],
+    "rooms": {
+        "Hill": {
+            "name": "Hill",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "therxyy",
+                "Skel"
+            ],
+            "createdName": "FC Hill 10"
+        },
+        "Castle": {
+            "name": "Castle",
+            "index": 9,
+            "finished": true,
+            "players": [
+                "Bitterly",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Castle 9"
+        },
+        "Arena": {
+            "name": "Arena",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "RiposteR",
+                "Fine"
+            ],
+            "createdName": "FC Arena 7"
+        },
+        "Throne": {
+            "name": "Throne",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "StiofanKingofAwoo",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Throne 6"
+        },
+        "Road": {
+            "name": "Road",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "cooolcat1239",
+                "Anarchid"
+            ],
+            "createdName": "FC Road 8"
+        },
+        "Bridge": {
+            "name": "Bridge",
+            "index": 0,
+            "finished": true
+        },
+        "Meadow": {
+            "name": "Meadow",
+            "index": 0,
+            "finished": true
+        },
+        "Tree": {
+            "name": "Tree",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1667944": {
+            "series": "Hill",
+            "name": "FC Hill 1",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1667953": {
+            "series": "Castle",
+            "name": "FC Castle 1",
+            "winner": "Bitterly",
+            "loser": "Fine"
+        },
+        "@B1667957": {
+            "series": "Throne",
+            "name": "FC Throne 1",
+            "winner": "Skel",
+            "loser": "Steel_Blue"
+        },
+        "@B1667964": {
+            "series": "Castle",
+            "name": "FC Castle 2",
+            "winner": "Bitterly",
+            "loser": "Skel"
+        },
+        "@B1667970": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1667971": {
+            "series": "Hill",
+            "name": "FC Hill 2",
+            "winner": "therxyy",
+            "loser": "Anarchid"
+        },
+        "@B1667979": {
+            "series": "Hill",
+            "name": "FC Hill 3",
+            "winner": "therxyy",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1667982": {
+            "series": "Throne",
+            "name": "FC Throne 2",
+            "winner": "Steel_Blue",
+            "loser": "Fine"
+        },
+        "@B1667985": {
+            "series": "Castle",
+            "name": "FC Castle 3",
+            "winner": "Bitterly",
+            "loser": "RiposteR"
+        },
+        "@B1667988": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Skel",
+            "loser": "cooolcat1239"
+        },
+        "@B1667994": {
+            "series": "Road",
+            "name": "FC Road 1",
+            "winner": "Anarchid",
+            "loser": "cabinboy"
+        },
+        "@B1667996": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1667997": {
+            "series": "Castle",
+            "name": "FC Castle 4",
+            "winner": "Bitterly",
+            "loser": "Skel"
+        },
+        "@B1667999": {
+            "series": "Throne",
+            "name": "FC Throne 3",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Fine"
+        },
+        "@B1668001": {
+            "series": "Hill",
+            "name": "FC Hill 4",
+            "winner": "Steel_Blue",
+            "loser": "therxyy"
+        },
+        "@B1668003": {
+            "series": "Road",
+            "name": "FC Road 2",
+            "winner": "Brackman",
+            "loser": "Anarchid"
+        },
+        "@B1668006": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "RiposteR",
+            "loser": "cabinboy"
+        },
+        "@B1668009": {
+            "series": "Road",
+            "name": "FC Road 3",
+            "winner": "Anarchid",
+            "loser": "therxyy"
+        },
+        "@B1668012": {
+            "series": "Castle",
+            "name": "FC Castle 5",
+            "winner": "Bitterly",
+            "loser": "cooolcat1239"
+        },
+        "@B1668015": {
+            "series": "Road",
+            "name": "FC Road 4",
+            "winner": "therxyy",
+            "loser": "cabinboy"
+        },
+        "@B1668018": {
+            "series": "Hill",
+            "name": "FC Hill 5",
+            "winner": "Brackman",
+            "loser": "Steel_Blue"
+        },
+        "@B1668020": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "RiposteR",
+            "loser": "Anarchid"
+        },
+        "@B1668023": {
+            "series": "Throne",
+            "name": "FC Throne 4",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Skel"
+        },
+        "@B1668025": {
+            "series": "Castle",
+            "name": "FC Castle 6",
+            "winner": "therxyy",
+            "loser": "Bitterly"
+        },
+        "@B1668026": {
+            "series": "Road",
+            "name": "FC Road 5",
+            "winner": "cooolcat1239",
+            "loser": "cabinboy"
+        },
+        "@B1668029": {
+            "series": "Hill",
+            "name": "FC Hill 6",
+            "winner": "Fine",
+            "loser": "Brackman"
+        },
+        "@B1668036": {
+            "series": "Road",
+            "name": "FC Road 6",
+            "winner": "cooolcat1239",
+            "loser": "Bitterly"
+        },
+        "@B1668037": {
+            "series": "Castle",
+            "name": "FC Castle 7",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1668038": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "RiposteR",
+            "loser": "Steel_Blue"
+        },
+        "@B1668045": {
+            "series": "Hill",
+            "name": "FC Hill 7",
+            "winner": "Fine",
+            "loser": "cabinboy"
+        },
+        "@B1668047": {
+            "series": "Castle",
+            "name": "FC Castle 8",
+            "winner": "Bitterly",
+            "loser": "Skel"
+        },
+        "@B1668048": {
+            "series": "Throne",
+            "name": "FC Throne 5",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Anarchid"
+        },
+        "@B1668051": {
+            "series": "Road",
+            "name": "FC Road 7",
+            "winner": "cooolcat1239",
+            "loser": "therxyy"
+        },
+        "@B1668053": {
+            "series": "Hill",
+            "name": "FC Hill 9",
+            "winner": "Anarchid",
+            "loser": "Skel"
+        },
+        "@B1668059": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "RiposteR",
+            "loser": "Fine"
+        },
+        "@B1668064": {
+            "series": "Hill",
+            "name": "FC Hill 10",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1668065": {
+            "series": "Throne",
+            "name": "FC Throne 6",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Steel_Blue"
+        },
+        "@B1668067": {
+            "series": "Road",
+            "name": "FC Road 8",
+            "winner": "cooolcat1239",
+            "loser": "Anarchid"
+        }
+    }
+}
