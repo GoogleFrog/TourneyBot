@@ -1,0 +1,341 @@
+{
+    "queue": [],
+    "defaultMaxQueueLength": 1,
+    "maxQueueLength": 1,
+    "maxQueueLengthTimer": false,
+    "postReadTimer": 8,
+    "postSetupTimer": 8,
+    "stateUpdated": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Mudosaka": "Arena",
+        "RiposteR": "Hill",
+        "cooolcat1239": "Castle",
+        "therxyy": "Bridge",
+        "Bitterly": "Arena",
+        "DasFapitale": "Throne",
+        "hedkeaf": "Road"
+    },
+    "winStreak": {},
+    "toDelete": [
+        "FC Hill 11",
+        "FC Hill 12",
+        "FC Hill 12",
+        "FC Hill 12",
+        "FC Hill 12"
+    ],
+    "rooms": {
+        "Hill": {
+            "name": "Hill",
+            "index": 13,
+            "finished": false,
+            "players": [
+                "Fine",
+                "Skel"
+            ],
+            "createdName": "FC Hill 13"
+        },
+        "Castle": {
+            "name": "Castle",
+            "index": 9,
+            "finished": false,
+            "players": [
+                "cooolcat1239",
+                "Mach56"
+            ],
+            "createdName": "FC Castle 9"
+        },
+        "Arena": {
+            "name": "Arena",
+            "index": 9,
+            "finished": false,
+            "players": [
+                "Bitterly",
+                "MSPR"
+            ],
+            "createdName": "FC Arena 9"
+        },
+        "Throne": {
+            "name": "Throne",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Anarchid",
+                "DasFapitale"
+            ],
+            "createdName": "FC Throne 5"
+        },
+        "Road": {
+            "name": "Road",
+            "index": 7,
+            "finished": false,
+            "players": [
+                "hedkeaf",
+                "Mach56"
+            ],
+            "createdName": "FC Road 7"
+        },
+        "Bridge": {
+            "name": "Bridge",
+            "index": 6,
+            "finished": false,
+            "players": [
+                "therxyy",
+                "Fine"
+            ],
+            "createdName": "FC Bridge 6"
+        },
+        "Meadow": {
+            "name": "Meadow",
+            "index": 0,
+            "finished": true
+        },
+        "Tree": {
+            "name": "Tree",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1671245": {
+            "series": "Hill",
+            "name": "FC Hill 1",
+            "winner": "Fine",
+            "loser": "Skel"
+        },
+        "@B1671253": {
+            "series": "Castle",
+            "name": "FC Castle 1",
+            "winner": "Bitterly",
+            "loser": "therxyy"
+        },
+        "@B1671254": {
+            "series": "Hill",
+            "name": "FC Hill 2",
+            "winner": "hedkeaf",
+            "loser": "Fine"
+        },
+        "@B1671255": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "MSPR",
+            "loser": "cooolcat1239"
+        },
+        "@B1671257": {
+            "series": "Road",
+            "name": "FC Road 1",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1671259": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "MSPR",
+            "loser": "Mudosaka"
+        },
+        "@B1671260": {
+            "series": "Throne",
+            "name": "FC Throne 1",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1671262": {
+            "series": "Hill",
+            "name": "FC Hill 3",
+            "winner": "therxyy",
+            "loser": "Fine"
+        },
+        "@B1671263": {
+            "series": "Road",
+            "name": "FC Road 2",
+            "winner": "RiposteR",
+            "loser": "MSPR"
+        },
+        "@B1671264": {
+            "series": "Throne",
+            "name": "FC Throne 2",
+            "winner": "Steel_Blue",
+            "loser": "Anarchid"
+        },
+        "@B1671266": {
+            "series": "Road",
+            "name": "FC Road 3",
+            "winner": "therxyy",
+            "loser": "RiposteR"
+        },
+        "@B1671268": {
+            "series": "Hill",
+            "name": "FC Hill 4",
+            "winner": "Skel",
+            "loser": "Fine"
+        },
+        "@B1671270": {
+            "series": "Bridge",
+            "name": "FC Bridge 1",
+            "winner": "Anarchid",
+            "loser": "Mach56"
+        },
+        "@B1671271": {
+            "series": "Castle",
+            "name": "FC Castle 2",
+            "winner": "Bitterly",
+            "loser": "hedkeaf"
+        },
+        "@B1671273": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Mudosaka",
+            "loser": "cooolcat1239"
+        },
+        "@B1671275": {
+            "series": "Castle",
+            "name": "FC Castle 3",
+            "winner": "Bitterly",
+            "loser": "Mach56"
+        },
+        "@B1671276": {
+            "series": "Hill",
+            "name": "FC Hill 5",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1671277": {
+            "series": "Throne",
+            "name": "FC Throne 3",
+            "winner": "Steel_Blue",
+            "loser": "MSPR"
+        },
+        "@B1671278": {
+            "series": "Road",
+            "name": "FC Road 4",
+            "winner": "DasFapitale",
+            "loser": "therxyy"
+        },
+        "@B1671279": {
+            "series": "Hill",
+            "name": "FC Hill 6",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1671281": {
+            "series": "Castle",
+            "name": "FC Castle 4",
+            "winner": "RiposteR",
+            "loser": "Bitterly"
+        },
+        "@B1671282": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "cooolcat1239",
+            "loser": "hedkeaf"
+        },
+        "@B1671283": {
+            "series": "Bridge",
+            "name": "FC Bridge 2",
+            "winner": "Fine",
+            "loser": "Anarchid"
+        },
+        "@B1671285": {
+            "series": "Hill",
+            "name": "FC Hill 7",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1671287": {
+            "series": "Castle",
+            "name": "FC Castle 5",
+            "winner": "Bitterly",
+            "loser": "Mach56"
+        },
+        "@B1671289": {
+            "series": "Bridge",
+            "name": "FC Bridge 3",
+            "winner": "hedkeaf",
+            "loser": "Anarchid"
+        },
+        "@B1671293": {
+            "series": "Throne",
+            "name": "FC Throne 4",
+            "winner": "Steel_Blue",
+            "loser": "DasFapitale"
+        },
+        "@B1671295": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "cooolcat1239",
+            "loser": "Fine"
+        },
+        "@B1671297": {
+            "series": "Hill",
+            "name": "FC Hill 8",
+            "winner": "RiposteR",
+            "loser": "Bitterly"
+        },
+        "@B1671298": {
+            "series": "Castle",
+            "name": "FC Castle 6",
+            "winner": "Mach56",
+            "loser": "Skel"
+        },
+        "@B1671299": {
+            "series": "Road",
+            "name": "FC Road 5",
+            "winner": "therxyy",
+            "loser": "MSPR"
+        },
+        "@B1671302": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Bitterly",
+            "loser": "Skel"
+        },
+        "@B1671300": {
+            "series": "Bridge",
+            "name": "FC Bridge 4",
+            "winner": "Steel_Blue",
+            "loser": "hedkeaf"
+        },
+        "@B1671303": {
+            "series": "Throne",
+            "name": "FC Throne 5",
+            "winner": "DasFapitale",
+            "loser": "Anarchid"
+        },
+        "@B1671305": {
+            "series": "Hill",
+            "name": "FC Hill 9",
+            "winner": "RiposteR",
+            "loser": "Fine"
+        },
+        "@B1671308": {
+            "series": "Castle",
+            "name": "FC Castle 7",
+            "winner": "cooolcat1239",
+            "loser": "Mach56"
+        },
+        "@B1671309": {
+            "series": "Bridge",
+            "name": "FC Bridge 5",
+            "winner": "therxyy",
+            "loser": "Steel_Blue"
+        },
+        "@B1671312": {
+            "series": "Road",
+            "name": "FC Road 6",
+            "winner": "hedkeaf",
+            "loser": "Skel"
+        },
+        "@1671309": {
+            "series": "Bridge",
+            "name": "FC Bridge 5",
+            "winner": "therxyy",
+            "loser": "Steel_Blue"
+        },
+        "@1671314": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "MSPR",
+            "loser": "Bitterly"
+        }
+    }
+}

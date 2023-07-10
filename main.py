@@ -3,6 +3,7 @@ import selenium as sl
 import random
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.keys import Keys
 import pprint
 import json
 
@@ -31,6 +32,7 @@ wantSuddenDeath = False
 forceUpdate = 0
 
 WANT_FILL = 'empty.'
+MAX_JOIN_ATTEMPT = 2
 
 state = {}
 
@@ -163,12 +165,15 @@ def InitializeState():
 	
 	state = {
 		'queue' : players,
-		'defaultMaxQueueLength' : 2,
+		'defaultMaxQueueLength' : 1,
 		'maxQueueLength' : 1,
 		'maxQueueLengthTimer' : 1,
 		"postReadTimer"  : 8,
 		"postSetupTimer" : 8,
+		'stateUpdated' : True,
+		'lobbyChannel' : 'fc',
 		'playerRoomPreference' : {},
+		'winStreak' : {},
 		'toDelete' : [],
 		'rooms' : {name : {
 			'name' : name,
@@ -181,17 +186,25 @@ def InitializeState():
 	return state
 
 
-def PrintState(state):
+def UpdateUiStatus(state):
 	global statusString
+	runningRooms = [data for name, data in state['rooms'].items() if not data['finished']]
+	status = 'Queue: {}'.format(state['queue'])
+	for room in runningRooms:
+		roomSummary = '{}: {} vs {}'.format(
+			room['createdName'], room['players'][0], room['players'][1])
+		status = status + '\n' + roomSummary
+	statusString.set(status)
+
+
+def PrintState(state):
 	runningRooms = [data for name, data in state['rooms'].items() if not data['finished']]
 	status = 'Queue: {}'.format(state['queue'])
 	print(status)
 	for room in runningRooms:
 		roomSummary = '{}: {} vs {}'.format(
 			room['createdName'], room['players'][0], room['players'][1])
-		status = status + '\n' + roomSummary
 		print('Running: ' + roomSummary)
-	statusString.set(status)
 
 
 def UpdateAddRemoveString():
@@ -224,8 +237,8 @@ def PrintBattles():
 		wins = sorted(wins.items(), key=lambda x : x[1], reverse=True)
 		if len(wins) > 0:
 			winners = [x[0] for x in wins if wins[0][1] == x[1]]
-			winnerStr = ' and '.join(winners)
-			print(' * King of the {}: @{} ({} wins out of {} games overall)'.format(series, winnerStr, wins[0][1], totalGames)) 
+			winnerStr = ' and '.join(['@{}'.format(w) for w in winners])
+			print(' * King of the {}: {} ({} wins out of {} games overall)'.format(series, winnerStr, wins[0][1], totalGames)) 
 		
 	# Print game stats
 	playerWins = {}
@@ -277,6 +290,7 @@ def FindRoomForPlayers(state, players):
 def ReplaceWantFill(state, player):
 	fillIndex = [i for i, x in enumerate(state['queue']) if x == WANT_FILL][0]
 	state['queue'][fillIndex] = player
+	state['stateUpdated'] = True
 	return state
 
 
@@ -311,7 +325,7 @@ def MakeRooms(driver, roomsToMake):
 			if name in roomsToMake:
 				if name not in joinAttempts:
 					joinAttempts[name] = 0
-				if 'forceJoin' in rowData and not rowData['playersJoined'] and joinAttempts[name] < 4:
+				if 'forceJoin' in rowData and not rowData['playersJoined'] and joinAttempts[name] < MAX_JOIN_ATTEMPT:
 					print('Force joining ' + name)
 					rowData['forceJoin'].click()
 					joinAttempts[name] = joinAttempts[name] + 1
@@ -334,6 +348,7 @@ def SetupRequiredRooms(driver, state):
 			room['createdName'], room['players'][0], room['players'][1]))
 	
 	if len(rooms) > 0:
+		state['stateUpdated'] = True
 		if state['maxQueueLengthTimer'] is not False:
 			state['maxQueueLengthTimer'] = state['maxQueueLengthTimer'] - 1
 			if state['maxQueueLengthTimer'] <= 0:
@@ -389,6 +404,7 @@ def HandleRoomFinish(state, room, battleID, winner=False):
 		'winner' : winner,
 		'loser'  : loser,
 	}
+	state['stateUpdated'] = True
 	return state
 
 
@@ -428,15 +444,18 @@ def UpdateGameState(driver, state):
 
 def RemovePlayerFromState(state, player):
 	if player in state['queue']:
-		state['queue'].remove(player)
+		state['queue'] = ListRemove(state['queue'], player)
+		state['stateUpdated'] = True
 		return state
 	for name, roomData in state['rooms'].items():
-		if player in roomData['players']:
+		if (not roomData['finished']) and (player in roomData['players']):
 			roomData['finished'] = True
 			state['toDelete'].append(roomData['createdName'])
 			otherPlayer = ListRemove(roomData['players'], player)[0]
 			state['queue'] = [otherPlayer] + state['queue']
+			state['stateUpdated'] = True
 			return state
+	return state
 
 
 def CheckAddOrRemovePlayers(state):
@@ -453,7 +472,7 @@ def CheckAddOrRemovePlayers(state):
 			
 	if len(playersToRemove) > 0:
 		for player in playersToRemove:
-			RemovePlayerFromState(state, player)
+			state = RemovePlayerFromState(state, player)
 		playersToRemove = []
 		if addRemoveString is not False:
 			UpdateAddRemoveString()
@@ -462,7 +481,7 @@ def CheckAddOrRemovePlayers(state):
 		changed = False
 		for player in playersToRemoveQueueOnly:
 			if player in state['queue']:
-				RemovePlayerFromState(state, player)
+				state = RemovePlayerFromState(state, player)
 				playersToRemoveQueueOnly = ListRemove(playersToRemoveQueueOnly, player)
 				changed = True
 		if changed and (addRemoveString is not False):
@@ -470,10 +489,41 @@ def CheckAddOrRemovePlayers(state):
 	return state
 
 
-def WriteAndPause(state, waitTime):
+def SendStateToLobby(state, driver):
+	if state['lobbyChannel'] is False:
+		return
+	
+	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
+	driver.implicitly_wait(0.5)
+	
+	cleanQueue = [name for name in state['queue'] if name != WANT_FILL]
+	if len(cleanQueue) > 0:
+		cleanQueue = ', '.join(cleanQueue)
+	else:
+		cleanQueue = 'empty'
+	
+	messageBox = driver.find_element(By.ID, 'chatbox')
+	messageBox.clear()
+	messageBox.send_keys('Queue: {}'.format(cleanQueue))
+	messageBox.send_keys(Keys.RETURN)
+	
+	driver.get('https://zero-k.info/Tourney')
+	driver.implicitly_wait(0.5)
+
+
+def WriteAndPause(state, driver, waitTime):
 	global forceUpdate
-	PrintState(state)
+	doPrint = state['stateUpdated']
+	if state['stateUpdated']:
+		# Read stateUpdated before the state is written, otherwise it will
+		# be overridden on state load.
+		state['stateUpdated'] = False
 	WriteState(state)
+	UpdateUiStatus(state)
+	if doPrint:
+		# Print state after it is written, in case of crash.
+		PrintState(state)
+		SendStateToLobby(state, driver)
 	updateTimer = 0
 	while pauseMain or (updateTimer < waitTime and forceUpdate == 0):
 		time.sleep(0.5)
@@ -488,18 +538,21 @@ def AutonomousUpdateThread():
 	global state
 	state = InitializeState()
 	driver = InitialiseWebDriver()
+	
+	UpdateUiStatus(state)
+	
 	print('Main thread started')
 	while (not killMain):
-		state = WriteAndPause(state, state['postReadTimer'])
+		state = WriteAndPause(state, driver, state['postReadTimer'])
 		if killMain:
 			return
 		state = SetupRequiredRooms(driver, state)
 		print('=========== Rooms Created ===========')
 		state = CleanUpRooms(driver, state)
 		print('=========== Rooms Deleted ===========')
-		PrintState(state)
+		UpdateUiStatus(state)
 	
-		state = WriteAndPause(state, state['postSetupTimer'])
+		state = WriteAndPause(state, driver, state['postSetupTimer'])
 		if killMain:
 			return
 		state = UpdateGameState(driver, state)
