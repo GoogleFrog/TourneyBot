@@ -165,10 +165,10 @@ def InitializeState():
 	
 	state = {
 		'queue' : players,
-		'defaultMaxQueueLength' : 1,
 		'maxQueueLength' : 1,
-		'maxQueueLengthTimer' : 1,
-		"postReadTimer"  : 8,
+		'maxQueueLengthTimer' : False,
+		'nextMaxQueueLength' : 1,
+		"postReadTimer"  : 5,
 		"postSetupTimer" : 8,
 		'stateUpdated' : True,
 		'lobbyChannel' : 'fc',
@@ -352,7 +352,7 @@ def SetupRequiredRooms(driver, state):
 		if state['maxQueueLengthTimer'] is not False:
 			state['maxQueueLengthTimer'] = state['maxQueueLengthTimer'] - 1
 			if state['maxQueueLengthTimer'] <= 0:
-				state['maxQueueLength'] = state['defaultMaxQueueLength']
+				state['maxQueueLength'] = state['nextMaxQueueLength']
 				state['maxQueueLengthTimer'] = False
 		success = MakeRooms(driver, rooms)
 	return state
