@@ -32,7 +32,7 @@ wantSuddenDeath = False
 forceUpdate = 0
 
 WANT_FILL = 'empty.'
-MAX_JOIN_ATTEMPT = 2
+MAX_JOIN_ATTEMPT = 4
 
 state = {}
 
@@ -223,8 +223,13 @@ def PrintBattles():
 	if state is False:
 		return
 	print('Battle Links')
+	print('{} games:'.format(len(list(state['completedGames'].keys()))))
+	print('[spoiler]')
 	for name in list(state['completedGames'].keys()):
 		print(name)
+	print('[/spoiler]')
+	print('')
+	print('Room champions:')
 	
 	# Print King of the X win stats
 	for series in state['rooms'].keys():
@@ -240,6 +245,8 @@ def PrintBattles():
 			winnerStr = ' and '.join(['@{}'.format(w) for w in winners])
 			print(' * King of the {}: {} ({} wins out of {} games overall)'.format(series, winnerStr, wins[0][1], totalGames)) 
 		
+	print('')
+	print('Player scores:')
 	# Print game stats
 	playerWins = {}
 	playerLosses = {}
@@ -466,6 +473,7 @@ def CheckAddOrRemovePlayers(state):
 			state['queue'] = state['queue'] + playersToAdd[1:]
 		else:
 			state['queue'] = state['queue'] + playersToAdd
+		state['stateUpdated'] = True
 		playersToAdd = []
 		if addRemoveString is not False:
 			UpdateAddRemoveString()
@@ -531,6 +539,11 @@ def WriteAndPause(state, driver, waitTime):
 	forceUpdate = max(0, forceUpdate - 1)
 	state = ReadState()
 	state = CheckAddOrRemovePlayers(state)
+	if state['stateUpdated']:
+		state['stateUpdated'] = False
+		UpdateUiStatus(state)
+		PrintState(state)
+		SendStateToLobby(state, driver)
 	return state
 
 
@@ -547,16 +560,15 @@ def AutonomousUpdateThread():
 		if killMain:
 			return
 		state = SetupRequiredRooms(driver, state)
-		print('=========== Rooms Created ===========')
 		state = CleanUpRooms(driver, state)
-		print('=========== Rooms Deleted ===========')
+		#print('=========== Rooms Updated ===========')
 		UpdateUiStatus(state)
 	
 		state = WriteAndPause(state, driver, state['postSetupTimer'])
 		if killMain:
 			return
 		state = UpdateGameState(driver, state)
-		print('=========== State Updated ===========')
+		#print('=========== State Updated ===========')
 
 
 def TestThread():
