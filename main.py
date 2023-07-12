@@ -20,6 +20,7 @@ roomListFile = '../roomNames'
 stateFile = '../state'
 loginFile = '../loginDetails'
 prefix = 'FC '
+channelName = 'fc'
 
 pauseMain = True
 killMain  = False
@@ -171,7 +172,7 @@ def InitializeState():
 		"postReadTimer"  : 5,
 		"postSetupTimer" : 8,
 		'stateUpdated' : True,
-		'lobbyChannel' : 'fc',
+		'lobbyChannel' : channelName,
 		'playerRoomPreference' : {},
 		'winStreak' : {},
 		'toDelete' : [],
