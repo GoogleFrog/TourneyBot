@@ -17,7 +17,7 @@ pp = pprint.PrettyPrinter(depth=4)
 
 playerListFile = '../players'
 roomListFile = '../roomNames'
-stateFile = '../state'
+stateFile = '../state_test'
 loginFile = '../loginDetails'
 prefix = 'FC '
 channelName = 'fc'
@@ -121,7 +121,7 @@ def ProcessTableRow(row):
 	if 'Delete' in elements:
 		rowData['delete'] = elements['Delete']
 	
-	rowData['playersJoined'] = (elementNames[0].count('  IN') > 1)
+	rowData['playersHaveJoined'] = (elementNames[0].count('  IN') > 1)
 		
 	if elementNames[4] == '  IN':
 		rowData['players'] = [elementNames[3], elementNames[5]]
@@ -333,7 +333,7 @@ def MakeRooms(driver, roomsToMake):
 			if name in roomsToMake:
 				if name not in joinAttempts:
 					joinAttempts[name] = 0
-				if 'forceJoin' in rowData and not rowData['playersJoined'] and joinAttempts[name] < MAX_JOIN_ATTEMPT:
+				if 'forceJoin' in rowData and not rowData['playersHaveJoined'] and joinAttempts[name] < MAX_JOIN_ATTEMPT:
 					print('Force joining ' + name)
 					rowData['forceJoin'].click()
 					joinAttempts[name] = joinAttempts[name] + 1
@@ -341,6 +341,17 @@ def MakeRooms(driver, roomsToMake):
 					tryForceJoin = True
 					break
 	return {n : (v < 4) for n, v in joinAttempts.items()}
+
+
+def CheckJoinRooms(driver):
+	# Update a single room join just in case.
+	rows = GetRoomTable(driver)
+	for name, rowData in rows.items():
+		if (not rowData['playersHaveJoined']) and 'battleID' not in rowData:
+			rowData['forceJoin'].click()
+			driver.implicitly_wait(0.5)
+			return
+	return
 
 
 def SetupRequiredRooms(driver, state):
@@ -363,6 +374,8 @@ def SetupRequiredRooms(driver, state):
 				state['maxQueueLength'] = state['nextMaxQueueLength']
 				state['maxQueueLengthTimer'] = False
 		success = MakeRooms(driver, rooms)
+	else:
+		CheckJoinRooms(driver)
 	return state
 
 
@@ -425,6 +438,34 @@ def GetBattleWinner(driver, battleID):
 	elements = winnerBox.find_elements(By.XPATH, ".//*")
 	userNameBox = winnerBox.find_element(By.CSS_SELECTOR, "a[href^='/Users/Detail/']")
 	return userNameBox.text
+	
+
+def UpdateChat(driver, state):
+	if state['lobbyChannel'] is False:
+		return state, False
+	
+	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
+	driver.implicitly_wait(0.5)
+	time.sleep(1.6)
+	
+	tables = driver.find_elements(By.XPATH, ".//*")
+	textList = [x.text for x in tables]
+	chatList = False
+	for text in textList:
+		if 'ago' in text and '\n' in text:
+			split = text.split('\n')
+			if (
+					len(split) > 1 and 
+					split[0] == '#{}'.format(state['lobbyChannel']) and
+					split[1] == 'Time User Text'):
+				chatList = split[2:]
+	if chatList is False:
+		return state, True
+	
+	chatList = CleanAgo(chatList)
+	print(chatList)
+	
+	return state, True
 
 
 def UpdateGameState(driver, state):
@@ -443,6 +484,8 @@ def UpdateGameState(driver, state):
 				winner = GetBattleWinner(driver, pageData['battleID'])
 				state = HandleRoomFinish(state, baseName, pageData['battleID'], winner=winner)
 				needReturnToPage = True
+	
+	state, needReturnToPage = UpdateChat(driver, state)
 	
 	if needReturnToPage:
 		driver.get('https://zero-k.info/Tourney')
@@ -717,25 +760,21 @@ def SetupThreads():
 	SetupWindow()
 
 
-def DoManualMode():
-	state = InitializeState()
+def CleanAgo(chatList):
+	newList = []
+	for text in chatList:
+		if ' ago ' in text:
+			newList.append(text[(text.find(' ago ') + 5):])
+	return newList
+
+
+def Test():
+	state = {'lobbyChannel' : 'fc'}
 	driver = InitialiseWebDriver()
 	
-	while True:
-		state = ReadState()
-		state = SetupRequiredRooms(driver, state)
-		WriteState(state)
-		print('=========== Rooms Created ===========')
-		PrintState(state)
-		input('Press enter')
-			
-		state = ReadState()
-		state = UpdateGameState(driver, state)
-		WriteState(state)
-		print('=========== State Updated ===========')
-		PrintState(state)
-		input('Press enter')
+	UpdateChat(driver, state)
 	
+
 SetupThreads()
-#DoManualMode()
+#Test()
 

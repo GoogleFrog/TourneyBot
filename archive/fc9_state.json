@@ -1,0 +1,189 @@
+{
+    "queue": [
+        "therxyy",
+        "Steel_Blue",
+        "cooolcat1239",
+        "Skel"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 5,
+    "postSetupTimer": 8,
+    "stateUpdated": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "RiposteR": "Hill",
+        "therxyy": "Hill",
+        "Steel_Blue": "Arena"
+    },
+    "winStreak": {},
+    "toDelete": [],
+    "rooms": {
+        "Hill": {
+            "name": "Hill",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "therxyy",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Hill 7"
+        },
+        "Castle": {
+            "name": "Castle",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Skel",
+                "cabinboy"
+            ],
+            "createdName": "FC Castle 5"
+        },
+        "Arena": {
+            "name": "Arena",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "Skel",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Arena 8"
+        },
+        "Throne": {
+            "name": "Throne",
+            "index": 0,
+            "finished": true
+        },
+        "Road": {
+            "name": "Road",
+            "index": 0,
+            "finished": true
+        },
+        "Bridge": {
+            "name": "Bridge",
+            "index": 0,
+            "finished": true
+        },
+        "Meadow": {
+            "name": "Meadow",
+            "index": 0,
+            "finished": true
+        },
+        "Tree": {
+            "name": "Tree",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1677112": {
+            "series": "Hill",
+            "name": "FC Hill 1",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1677125": {
+            "series": "Castle",
+            "name": "FC Castle 1",
+            "winner": "RiposteR",
+            "loser": "Steel_Blue"
+        },
+        "@B1677127": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1677134": {
+            "series": "Hill",
+            "name": "FC Hill 2",
+            "winner": "cooolcat1239",
+            "loser": "cabinboy"
+        },
+        "@B1677144": {
+            "series": "Castle",
+            "name": "FC Castle 2",
+            "winner": "RiposteR",
+            "loser": "therxyy"
+        },
+        "@B1677145": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1677149": {
+            "series": "Hill",
+            "name": "FC Hill 3",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1677152": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Steel_Blue",
+            "loser": "Pootis"
+        },
+        "@B1677155": {
+            "series": "Castle",
+            "name": "FC Castle 3",
+            "winner": "cabinboy",
+            "loser": "therxyy"
+        },
+        "@B1677157": {
+            "series": "Hill",
+            "name": "FC Hill 5",
+            "winner": "Pootis",
+            "loser": "Skel"
+        },
+        "@B1677166": {
+            "series": "Hill",
+            "name": "FC Hill 6",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1677168": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "cooolcat1239",
+            "loser": "Steel_Blue"
+        },
+        "@B1677177": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1677178": {
+            "series": "Castle",
+            "name": "FC Castle 4",
+            "winner": "Pootis",
+            "loser": "cabinboy"
+        },
+        "@B1677180": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "Pootis",
+            "loser": "Steel_Blue"
+        },
+        "@B1677185": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "Skel",
+            "loser": "Pootis"
+        },
+        "@B1677186": {
+            "series": "Hill",
+            "name": "FC Hill 7",
+            "winner": "therxyy",
+            "loser": "cooolcat1239"
+        },
+        "@B1677191": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        }
+    }
+}
