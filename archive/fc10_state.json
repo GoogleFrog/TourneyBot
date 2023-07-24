@@ -1,0 +1,192 @@
+{
+    "queue": [
+        "therxyy",
+        "empty.",
+        "MSPR"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "RiposteR": "Hill",
+        "therxyy": "Castle"
+    },
+    "winStreak": {},
+    "toDelete": [],
+    "botName": "TourneyBot",
+    "rooms": {
+        "Hill": {
+            "name": "Hill",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Skel",
+                "GoogleFrog"
+            ],
+            "createdName": "FC Hill 5"
+        },
+        "Castle": {
+            "name": "Castle",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "therxyy",
+                "MSPR"
+            ],
+            "createdName": "FC Castle 8"
+        },
+        "Arena": {
+            "name": "Arena",
+            "index": 2,
+            "finished": true,
+            "players": [
+                "Mudosaka",
+                "Skel"
+            ],
+            "createdName": "FC Arena 2"
+        },
+        "Throne": {
+            "name": "Throne",
+            "index": 0,
+            "finished": true
+        },
+        "Road": {
+            "name": "Road",
+            "index": 0,
+            "finished": true
+        },
+        "Bridge": {
+            "name": "Bridge",
+            "index": 0,
+            "finished": true
+        },
+        "Meadow": {
+            "name": "Meadow",
+            "index": 0,
+            "finished": true
+        },
+        "Tree": {
+            "name": "Tree",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1680620": {
+            "series": "Hill",
+            "name": "FC Hill 1",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1680629": {
+            "series": "Castle",
+            "name": "FC Castle 1",
+            "winner": "RiposteR",
+            "loser": "therxyy"
+        },
+        "@B1680630": {
+            "series": "Hill",
+            "name": "FC Hill 2",
+            "winner": "RiposteR",
+            "loser": "Steel_Blue"
+        },
+        "@B1680635": {
+            "series": "Castle",
+            "name": "FC Castle 2",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1680644": {
+            "series": "Hill",
+            "name": "FC Hill 3",
+            "winner": "RiposteR",
+            "loser": "Mudosaka"
+        },
+        "@B1680650": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "MSPR",
+            "loser": "Skel"
+        },
+        "@B1680651": {
+            "series": "Castle",
+            "name": "FC Castle 3",
+            "winner": "therxyy",
+            "loser": "Steel_Blue"
+        },
+        "@B1680653": {
+            "series": "Castle",
+            "name": "FC Castle 4",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1680657": {
+            "series": "Hill",
+            "name": "FC Hill 4",
+            "winner": "RiposteR",
+            "loser": "MSPR"
+        },
+        "@B1680659": {
+            "series": "Castle",
+            "name": "FC Castle 5",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1680669": {
+            "series": "Castle",
+            "name": "FC Castle 6",
+            "winner": "therxyy",
+            "loser": "MSPR"
+        },
+        "@B1680678": {
+            "series": "Castle",
+            "name": "FC Castle 7",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1680683": {
+            "series": "Castle",
+            "name": "FC Castle 8",
+            "winner": "therxyy",
+            "loser": "MSPR"
+        }
+    },
+    "newChat": [],
+    "prevChat": [
+        "TourneyBot Queue: MSPR",
+        "therxyy fc done?",
+        "Skel just noone playing",
+        "Skel anyway",
+        "Skel wp",
+        "Skel leave",
+        "TourneyBot Queue: therxyy, MSPR, Skel",
+        "Skel leave",
+        "TourneyBot Queue: Skel",
+        "Skel thx TourneyBot",
+        "GoogleFrog if you leave, I could test people leaving without say anything",
+        "GoogleFrog therxyy or MSPR",
+        "Skel did it",
+        "Skel im not realy leaving, its over tho",
+        "Skel isnt it",
+        "GoogleFrog looks like there is one more game",
+        "GoogleFrog you could test it with me actually",
+        "GoogleFrog q",
+        "Skel q",
+        "TourneyBot Queue: Skel, GoogleFrog",
+        "TourneyBot Queue: empty",
+        "TourneyBot Queue: GoogleFrog",
+        "GoogleFrog leave",
+        "TourneyBot Queue: empty",
+        "Skel ok",
+        "GoogleFrog worked",
+        "TourneyBot Queue: therxyy, MSPR",
+        "therxyy unq",
+        "therxyy deq",
+        "GoogleFrog leave"
+    ],
+    "missingPlayers": []
+}

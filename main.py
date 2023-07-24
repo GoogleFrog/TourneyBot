@@ -31,9 +31,18 @@ playersToRemove = []
 playersToRemoveQueueOnly = []
 wantSuddenDeath = False
 forceUpdate = 0
+desiredQueue = False
 
 WANT_FILL = 'empty.'
 MAX_JOIN_ATTEMPT = 4
+
+QUEUE_PHRASES = [
+	'q', 'queue',
+]
+
+LEAVE_PHRASES = [
+	'leave', 'unqueue', 'unq', 'deq',
+]
 
 state = {}
 
@@ -122,11 +131,15 @@ def ProcessTableRow(row):
 		rowData['delete'] = elements['Delete']
 	
 	rowData['playersHaveJoined'] = (elementNames[0].count('  IN') > 1)
-		
 	if elementNames[4] == '  IN':
 		rowData['players'] = [elementNames[3], elementNames[5]]
 	else:
 		rowData['players'] = [elementNames[3], elementNames[4]]
+	
+	if rowData['playersHaveJoined']:
+		rowData['missingPlayers'] = []
+	else:
+		rowData['missingPlayers'] = [p for p in rowData['players'] if (p + '   IN' not in elementNames[0])]
 	
 	selectNext = False
 	for name, element in elements.items():
@@ -163,19 +176,25 @@ def InitializeState():
 	players = LoadFileToList(playerListFile)
 	roomNames = LoadFileToList(roomListFile)
 	random.shuffle(players)
+	loginDetails = LoadFileToList(loginFile)
 	
 	state = {
 		'queue' : players,
 		'maxQueueLength' : 1,
 		'maxQueueLengthTimer' : False,
 		'nextMaxQueueLength' : 1,
-		"postReadTimer"  : 5,
-		"postSetupTimer" : 8,
+		'postReadTimer'  : 4,
+		'postSetupTimer' : 4,
 		'stateUpdated' : True,
+		'needPlayerShuffle' : True,
 		'lobbyChannel' : channelName,
 		'playerRoomPreference' : {},
+		'missingPlayers' : [],
 		'winStreak' : {},
+		'botName' : loginDetails[0],
 		'toDelete' : [],
+		'prevChat' : [],
+		'newChat' : [],
 		'rooms' : {name : {
 			'name' : name,
 			'index' : 0,
@@ -281,6 +300,22 @@ def PrintBattles():
 		print(match[matchup])
 			
 
+def SendLobbyMessage(driver, state, text):
+	if state['lobbyChannel'] is False:
+		return
+	
+	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
+	driver.implicitly_wait(0.5)
+	
+	messageBox = driver.find_element(By.ID, 'chatbox')
+	messageBox.clear()
+	messageBox.send_keys(text)
+	messageBox.send_keys(Keys.RETURN)
+	
+	driver.get('https://zero-k.info/Tourney')
+	driver.implicitly_wait(0.5)
+
+
 def FindRoomForPlayers(state, players):
 	checkRooms = []
 	for name in players:
@@ -346,17 +381,21 @@ def MakeRooms(driver, roomsToMake):
 def CheckJoinRooms(driver):
 	# Update a single room join just in case.
 	rows = GetRoomTable(driver)
+	if rows is False:
+		return
 	for name, rowData in rows.items():
 		if (not rowData['playersHaveJoined']) and 'battleID' not in rowData:
 			rowData['forceJoin'].click()
 			driver.implicitly_wait(0.5)
 			return
-	return
 
 
 def SetupRequiredRooms(driver, state):
 	rooms = {}
 	while (len(state['queue']) > state['maxQueueLength']) and (WANT_FILL not in state['queue'][:2]):
+		if state['needPlayerShuffle'] and (WANT_FILL not in state['queue']):
+			random.shuffle(state['queue'])
+			state['needPlayerShuffle'] = False
 		room = FindRoomForPlayers(state, state['queue'][:2])
 		room['index'] = room['index'] + 1
 		room['players'] = state['queue'][:2]
@@ -438,59 +477,6 @@ def GetBattleWinner(driver, battleID):
 	elements = winnerBox.find_elements(By.XPATH, ".//*")
 	userNameBox = winnerBox.find_element(By.CSS_SELECTOR, "a[href^='/Users/Detail/']")
 	return userNameBox.text
-	
-
-def UpdateChat(driver, state):
-	if state['lobbyChannel'] is False:
-		return state, False
-	
-	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
-	driver.implicitly_wait(0.5)
-	time.sleep(1.6)
-	
-	tables = driver.find_elements(By.XPATH, ".//*")
-	textList = [x.text for x in tables]
-	chatList = False
-	for text in textList:
-		if 'ago' in text and '\n' in text:
-			split = text.split('\n')
-			if (
-					len(split) > 1 and 
-					split[0] == '#{}'.format(state['lobbyChannel']) and
-					split[1] == 'Time User Text'):
-				chatList = split[2:]
-	if chatList is False:
-		return state, True
-	
-	chatList = CleanAgo(chatList)
-	print(chatList)
-	
-	return state, True
-
-
-def UpdateGameState(driver, state):
-	driver.get('https://zero-k.info/Tourney') # Refresh page
-	driver.implicitly_wait(0.5)
-
-	pageRooms = GetRoomTable(driver)
-	needReturnToPage = False
-	if pageRooms is False:
-		return state
-	
-	for baseName, roomData in state['rooms'].items():
-		if 'createdName' in roomData and roomData['createdName'] in pageRooms:
-			pageData = pageRooms[roomData['createdName']]
-			if 'battleID' in pageData and (not roomData['finished']):
-				winner = GetBattleWinner(driver, pageData['battleID'])
-				state = HandleRoomFinish(state, baseName, pageData['battleID'], winner=winner)
-				needReturnToPage = True
-	
-	state, needReturnToPage = UpdateChat(driver, state)
-	
-	if needReturnToPage:
-		driver.get('https://zero-k.info/Tourney')
-		driver.implicitly_wait(0.5)
-	return state
 
 
 def RemovePlayerFromState(state, player):
@@ -509,15 +495,25 @@ def RemovePlayerFromState(state, player):
 	return state
 
 
+def AddPlayerToState(state, player):
+	if player in state['queue']:
+		return state
+	for room in state['rooms'].values():
+		if room['finished'] is not True and player in room['players']:
+			return state
+	if WANT_FILL in state['queue']:
+		state = ReplaceWantFill(state, player)
+	else:
+		state['queue'] = state['queue'] + [player]
+	state['stateUpdated'] = True
+	return state
+
+
 def CheckAddOrRemovePlayers(state):
 	global playersToAdd, playersToRemove, playersToRemoveQueueOnly, addRemoveString
 	if len(playersToAdd) > 0:
-		if WANT_FILL in state['queue']:
-			state = ReplaceWantFill(state, playersToAdd[0])
-			state['queue'] = state['queue'] + playersToAdd[1:]
-		else:
-			state['queue'] = state['queue'] + playersToAdd
-		state['stateUpdated'] = True
+		for player in playersToAdd:
+			state = AddPlayerToState(state, player)
 		playersToAdd = []
 		if addRemoveString is not False:
 			UpdateAddRemoveString()
@@ -541,7 +537,138 @@ def CheckAddOrRemovePlayers(state):
 	return state
 
 
-def SendStateToLobby(state, driver):
+def RemoveTimeFromChat(chatList):
+	newList = []
+	for text in chatList:
+		# Remove days ago to avoid grabbing previous event chat
+		if ' ago ' in text and ' days ago ' not in text:
+			newList.append(text[(text.find(' ago ') + 5):])
+	return newList
+
+
+def ScoreListOverlap(baseList, newList, offset):
+	score = 0
+	for i in range(len(newList)):
+		if len(baseList) <= i + offset:
+			return score
+		if baseList[i + offset] == newList[i]:
+			score = score + 1
+	return score
+
+
+def UpdateChat(driver, state):
+	if state['lobbyChannel'] is False:
+		return state
+	
+	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
+	driver.implicitly_wait(0.5)
+	time.sleep(1.6)
+	
+	tables = driver.find_elements(By.XPATH, ".//*")
+	textList = [x.text for x in tables]
+	chatList = False
+	for text in textList:
+		if 'ago' in text and '\n' in text:
+			split = text.split('\n')
+			if (
+					len(split) > 1 and 
+					split[0] == '#{}'.format(state['lobbyChannel']) and
+					split[1] == 'Time User Text'):
+				chatList = split[2:]
+	if chatList is False:
+		return state
+	
+	chatList = RemoveTimeFromChat(chatList)
+	if 'prevChat' not in state or len(state['prevChat']) == 0:
+		state['newChat'] = chatList
+		state['prevChat'] = chatList
+		return state
+	
+	# Find new chat
+	bestScore = 0
+	bestOffset = 0
+	for i in range(len(chatList)):
+		score = ScoreListOverlap(state['prevChat'], chatList, i)
+		if score > bestScore:
+			bestScore = score
+			bestOffset = i
+	
+	newChat = []
+	for i in range(len(chatList)):
+		if len(state['prevChat']) <= i + bestOffset or state['prevChat'][i + bestOffset] != chatList[i]:
+			newChat.append(chatList[i])
+	
+	state['newChat'] = newChat
+	state['prevChat'] = chatList
+	return state
+
+
+def ProcessNewChatLine(state, line):
+	words = line.split(' ')
+	if len(words) <= 1:
+		return state
+	player = words[0]
+	words = words[1:]
+	firstWord = words[0]
+	if player == state['botName']:
+		return state
+	
+	if firstWord.lower() in QUEUE_PHRASES:
+		state = AddPlayerToState(state, player)
+	if firstWord.lower() in LEAVE_PHRASES:
+		state = RemovePlayerFromState(state, player)
+	return state
+	
+
+def ProcessNewChat(state):
+	for line in state['newChat']:
+		state = ProcessNewChatLine(state, line)
+	state['newChat'] = []
+	return state
+
+
+def HandleMissingPlayers(driver, state, pageRooms):
+	if 'missingPlayers' not in state:
+		state['missingPlayers'] = []
+	newMissingPlayers = []
+	for room in pageRooms.values():
+		if 'battleID' not in room:
+			newMissingPlayers = newMissingPlayers + room['missingPlayers']
+	for player in state['missingPlayers']:
+		if player in newMissingPlayers:
+			state = RemovePlayerFromState(state, player)
+			SendLobbyMessage(driver, state, 'Removing missing player {}'.format(player))
+			print('Removing missing player', player)
+	state['missingPlayers'] = newMissingPlayers
+	if len(newMissingPlayers) > 0:
+		print('Potential missing players', newMissingPlayers)
+	return state
+
+
+def UpdateGameState(driver, state):
+	driver.get('https://zero-k.info/Tourney') # Refresh page
+	driver.implicitly_wait(0.5)
+
+	pageRooms = GetRoomTable(driver)
+	if pageRooms is not False:
+		for baseName, roomData in state['rooms'].items():
+			if 'createdName' in roomData and roomData['createdName'] in pageRooms:
+				pageData = pageRooms[roomData['createdName']]
+				if 'battleID' in pageData and (not roomData['finished']):
+					winner = GetBattleWinner(driver, pageData['battleID'])
+					state = HandleRoomFinish(state, baseName, pageData['battleID'], winner=winner)
+		
+		state = HandleMissingPlayers(driver, state, pageRooms)
+	
+	state = UpdateChat(driver, state)
+	state = ProcessNewChat(state)
+	
+	driver.get('https://zero-k.info/Tourney')
+	driver.implicitly_wait(0.5)
+	return state
+
+
+def SendStateToLobby(driver, state):
 	if state['lobbyChannel'] is False:
 		return
 	
@@ -563,31 +690,39 @@ def SendStateToLobby(state, driver):
 	driver.implicitly_wait(0.5)
 
 
-def WriteAndPause(state, driver, waitTime):
-	global forceUpdate
+def WriteAndPause(driver, state, waitTime):
+	global forceUpdate, desiredQueue
 	doPrint = state['stateUpdated']
 	if state['stateUpdated']:
 		# Read stateUpdated before the state is written, otherwise it will
 		# be overridden on state load.
 		state['stateUpdated'] = False
+	
 	WriteState(state)
 	UpdateUiStatus(state)
 	if doPrint:
 		# Print state after it is written, in case of crash.
 		PrintState(state)
-		SendStateToLobby(state, driver)
+		SendStateToLobby(driver, state)
+	
 	updateTimer = 0
 	while pauseMain or (updateTimer < waitTime and forceUpdate == 0):
 		time.sleep(0.5)
 		updateTimer = updateTimer + 0.5
+	
 	forceUpdate = max(0, forceUpdate - 1)
 	state = ReadState()
+	
+	if desiredQueue is not False:
+		state['maxQueueLength'] = desiredQueue
+		state['nextMaxQueueLength'] = desiredQueue
+		desiredQueue = False
 	state = CheckAddOrRemovePlayers(state)
 	if state['stateUpdated']:
 		state['stateUpdated'] = False
 		UpdateUiStatus(state)
 		PrintState(state)
-		SendStateToLobby(state, driver)
+		SendStateToLobby(driver, state)
 	return state
 
 
@@ -600,7 +735,7 @@ def AutonomousUpdateThread():
 	
 	print('Main thread started')
 	while (not killMain):
-		state = WriteAndPause(state, driver, state['postReadTimer'])
+		state = WriteAndPause(driver, state, state['postReadTimer'])
 		if killMain:
 			return
 		state = SetupRequiredRooms(driver, state)
@@ -608,7 +743,7 @@ def AutonomousUpdateThread():
 		#print('=========== Rooms Updated ===========')
 		UpdateUiStatus(state)
 	
-		state = WriteAndPause(state, driver, state['postSetupTimer'])
+		state = WriteAndPause(driver, state, state['postSetupTimer'])
 		if killMain:
 			return
 		state = UpdateGameState(driver, state)
@@ -634,21 +769,28 @@ def SetupWindow():
 	statusString.set("Status")
 	
 	pauseString = tk.StringVar()
-	pauseString.set("PAUSED")
+	pauseString.set("Paused")
 	
 	addRemoveString = tk.StringVar()
 	addRemoveString.set("")
 	
-	def Resume():
-		global pauseMain, forceUpdate
+	activeVar = tk.IntVar()
+	activeVar.set(0)
+	
+	def Resume(text, queueActive):
+		global pauseMain, forceUpdate, desiredQueue
 		pauseMain = False
 		forceUpdate = 2
-		pauseString.set("ACTIVE")
+		pauseString.set(text)
+		if queueActive:
+			desiredQueue = 1
+		else:
+			desiredQueue = 100
 		
 	def Pause():
 		global pauseMain
 		pauseMain = True
-		pauseString.set("PAUSED")
+		pauseString.set("Paused")
 	
 	def AddPlayer():
 		global forceUpdate
@@ -702,11 +844,20 @@ def SetupWindow():
 		txtfld.insert(0, lastTextString)
 		return 'break'
 
+	def RadioPress():
+		if activeVar.get() == 0:
+			Pause()
+		elif activeVar.get() == 1:
+			Resume('Queue Frozen', False)
+		elif activeVar.get() == 2:
+			Resume('Queue Active', True)		
+
 	window.bind("<Tab>", TabPressed)
 	
 	offset = 20
 	labelSpacing = 40
 	spacing = 50
+	radioSpacing = 35
 	fontSmall = ("Helvetica", 12)
 	font      = ("Helvetica", 16)
 	fontBig   = ("Helvetica", 24)
@@ -715,16 +866,20 @@ def SetupWindow():
 	label.place(x=20, y=offset)
 	offset = offset + spacing
 	
-	btn = tk.Button(window, text="Resume", fg='blue', command=Resume, font=font, width=8)
+	
+	btn = tk.Radiobutton(window, text='Pause', variable=activeVar, font=font, value=0, command=RadioPress, indicatoron=0, fg='blue', width=8)
 	btn.place(x=20, y=offset)
-	btn = tk.Button(window, text="Pause", fg='blue', command=Pause, font=font, width=8)
+	btn = tk.Radiobutton(window, text='Freeze', variable=activeVar, font=font, value=1, command=RadioPress, indicatoron=0, fg='blue', width=8)
+	btn.place(x=20, y=offset + radioSpacing)
+	btn = tk.Radiobutton(window, text='Active', variable=activeVar, font=font, value=2, command=RadioPress, indicatoron=0, fg='blue', width=8)
+	btn.place(x=20, y=offset + 2*radioSpacing)
+	
+	btn = tk.Button(window, text="Add", fg='blue', command=AddPlayer, font=font, width=8)
 	btn.place(x=140, y=offset)
 	btn = tk.Button(window, text="Print Stats", fg='blue', command=PrintBattles, font=font, width=12)
 	btn.place(x=260, y=offset)
 	offset = offset + spacing
 	
-	btn = tk.Button(window, text="Add", fg='blue', command=AddPlayer, font=font, width=8)
-	btn.place(x=20, y=offset)
 	btn = tk.Button(window, text="Remove", fg='blue', command=RemovePlayerQueueOnly, font=font, width=8)
 	btn.place(x=140, y=offset)
 	btn = tk.Button(window, text="Force Remove", fg='blue', command=RemovePlayer, font=font, width=12)
@@ -733,7 +888,8 @@ def SetupWindow():
 	label = tk.Label(window, textvariable=addRemoveString, font=fontSmall, justify=tk.LEFT)
 	label.place(x=260, y=offset + 45)
 	
-	offset = offset + spacing
+	offset = offset + spacing + 20
+	
 	
 	txtfld = tk.Entry(window, text="Player Names", bd=5, font=font, width=18)
 	txtfld.place(x=20, y=offset)
@@ -758,14 +914,6 @@ def SetupThreads():
 	mainThread.start()
 	
 	SetupWindow()
-
-
-def CleanAgo(chatList):
-	newList = []
-	for text in chatList:
-		if ' ago ' in text:
-			newList.append(text[(text.find(' ago ') + 5):])
-	return newList
 
 
 def Test():
