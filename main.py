@@ -17,7 +17,7 @@ pp = pprint.PrettyPrinter(depth=4)
 
 playerListFile = '../players'
 roomListFile = '../roomNames'
-stateFile = '../state_test'
+stateFile = '../state'
 loginFile = '../loginDetails'
 prefix = 'FC '
 channelName = 'fc'
