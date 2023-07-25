@@ -97,8 +97,10 @@ def GetListInput(question, choices):
 	return choices[int(response) - 1]
 
 
-def InitialiseWebDriver():
+def InitialiseWebDriver(state):
 	loginDetails = LoadFileToList(loginFile)
+	state['botName'] = loginDetails[0]
+	
 	# Using Chrome to access web
 	driver = sl.webdriver.Chrome()# Open the website
 	
@@ -107,7 +109,6 @@ def InitialiseWebDriver():
 	
 	nameBox = driver.find_element(By.NAME, 'login')
 	nameBox.send_keys(loginDetails[0])
-	
 	
 	nameBox = driver.find_element(By.NAME, 'password')
 	nameBox.send_keys(loginDetails[1])
@@ -729,7 +730,7 @@ def WriteAndPause(driver, state, waitTime):
 def AutonomousUpdateThread():
 	global state
 	state = InitializeState()
-	driver = InitialiseWebDriver()
+	driver = InitialiseWebDriver(state)
 	
 	UpdateUiStatus(state)
 	
@@ -918,7 +919,7 @@ def SetupThreads():
 
 def Test():
 	state = {'lobbyChannel' : 'fc'}
-	driver = InitialiseWebDriver()
+	driver = InitialiseWebDriver(state)
 	
 	UpdateChat(driver, state)
 	
