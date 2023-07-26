@@ -563,9 +563,14 @@ def UpdateChat(driver, state):
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
 	driver.implicitly_wait(0.5)
-	time.sleep(1.6)
 	
 	tables = driver.find_elements(By.XPATH, ".//*")
+	attempts = 0
+	while attempts < 100 and 'Loading chat messages...' in [x.text for x in tables]:
+		attempts = attempts + 1
+		time.sleep(0.05)
+		tables = driver.find_elements(By.XPATH, ".//*")
+	
 	textList = [x.text for x in tables]
 	chatList = False
 	for text in textList:
