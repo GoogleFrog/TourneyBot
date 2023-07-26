@@ -566,9 +566,9 @@ def UpdateChat(driver, state):
 	
 	tables = driver.find_elements(By.XPATH, ".//*")
 	attempts = 0
-	while attempts < 100 and 'Loading chat messages...' in [x.text for x in tables]:
+	while attempts < 500 and 'Loading chat messages...' in [x.text for x in tables]:
 		attempts = attempts + 1
-		time.sleep(0.05)
+		time.sleep(0.03)
 		tables = driver.find_elements(By.XPATH, ".//*")
 	
 	textList = [x.text for x in tables]
