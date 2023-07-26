@@ -1,0 +1,170 @@
+{
+    "queue": [
+        "empty.",
+        "Skel"
+    ],
+    "maxQueueLength": 1,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 1,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "RiposteR": "Castle",
+        "MSPR": "Hill",
+        "Steel_Blue": "Hill"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "FightClubBot",
+    "toDelete": [],
+    "prevChat": [
+        "StiofanKingofAwoo lowest person ive seen in fc was silver i think",
+        "RiposteR but there are a lot of players who just didnt show up",
+        "RiposteR who are on all the time anyway",
+        "GoogleFrog it isn't advertised at below blue",
+        "StiofanKingofAwoo which is fair id say, for 1v1",
+        "Mach56 Yeah I think I was the lowest person who ever joined, just not that much interest",
+        "FightClubBot Queue: Steel_Blue, Skel",
+        "Mach56 atm anyway, end it now?",
+        "Steel_Blue deq",
+        "FightClubBot Queue: Skel",
+        "StiofanKingofAwoo i think a smolteam fightclub would be neat",
+        "GoogleFrog we haven't tried asking lower ranks",
+        "Steel_Blue I think skel is the only one in q right now",
+        "RiposteR it was awesome when there were 10+ people",
+        "Skel well after the early surge people just stopped showing up",
+        "RiposteR like the ~4th or 3rd fc",
+        "Steel_Blue yea, getting 40 games, new match new player",
+        "Steel_Blue variety",
+        "Skel even now",
+        "Steel_Blue not elotrading in 1v1 queue",
+        "Skel mh less reason to start he game",
+        "RiposteR but yea, like, if zk was bigger, there would be a caster casting fight club",
+        "Mach56 biweekly may be too frequent, maybe twice a month to keep it fresh",
+        "Steel_Blue we would need like 50 1v1 players to support the games played and games spectated",
+        "StiofanKingofAwoo i suppose casting would be a good idea",
+        "RiposteR yea it all comes down to just increasing player base",
+        "Mach56 Skel ok if I end FC now or would you like for me to keep hosting it in case people join?",
+        "GoogleFrog 50?",
+        "RiposteR which seems solidly constant but not growing",
+        "Skel just end"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Hill": {
+            "name": "Hill",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "Skel",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Hill 7"
+        },
+        "Castle": {
+            "name": "Castle",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "RiposteR",
+                "Skel"
+            ],
+            "createdName": "FC Castle 5"
+        },
+        "Arena": {
+            "name": "Arena",
+            "index": 0,
+            "finished": true
+        },
+        "Throne": {
+            "name": "Throne",
+            "index": 0,
+            "finished": true
+        },
+        "Road": {
+            "name": "Road",
+            "index": 0,
+            "finished": true
+        },
+        "Bridge": {
+            "name": "Bridge",
+            "index": 0,
+            "finished": true
+        },
+        "Meadow": {
+            "name": "Meadow",
+            "index": 0,
+            "finished": true
+        },
+        "Tree": {
+            "name": "Tree",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1681985": {
+            "series": "Castle",
+            "name": "FC Castle 1",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1681988": {
+            "series": "Hill",
+            "name": "FC Hill 2",
+            "winner": "MSPR",
+            "loser": "Steel_Blue"
+        },
+        "@B1681997": {
+            "series": "Hill",
+            "name": "FC Hill 3",
+            "winner": "MSPR",
+            "loser": "Mach56"
+        },
+        "@B1681996": {
+            "series": "Castle",
+            "name": "FC Castle 2",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1682001": {
+            "series": "Hill",
+            "name": "FC Hill 4",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        },
+        "@B1682009": {
+            "series": "Castle",
+            "name": "FC Castle 3",
+            "winner": "RiposteR",
+            "loser": "MSPR"
+        },
+        "@B1682013": {
+            "series": "Hill",
+            "name": "FC Hill 5",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1682021": {
+            "series": "Hill",
+            "name": "FC Hill 6",
+            "winner": "MSPR",
+            "loser": "Skel"
+        },
+        "@B1682028": {
+            "series": "Castle",
+            "name": "FC Castle 4",
+            "winner": "RiposteR",
+            "loser": "Steel_Blue"
+        },
+        "@B1682032": {
+            "series": "Hill",
+            "name": "FC Hill 7",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        }
+    }
+}
