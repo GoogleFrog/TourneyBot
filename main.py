@@ -41,7 +41,7 @@ QUEUE_PHRASES = [
 ]
 
 LEAVE_PHRASES = [
-	'leave', 'unqueue', 'unq', 'deq',
+	'leave', 'unqueue', 'dequeue', 'unq', 'deq',
 ]
 
 state = {}
