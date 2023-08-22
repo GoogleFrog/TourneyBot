@@ -58,7 +58,7 @@ def ReadState():
 
 def LoadFileToList(fileName):
 	with open('{}.txt'.format(fileName)) as file:
-	    lines = [line.rstrip() for line in file]
+		lines = [line.rstrip() for line in file]
 	return lines
 
 def Opt(table, parameter, default=False):
