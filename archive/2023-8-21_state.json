@@ -1,0 +1,187 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Godde": "Fence",
+        "DasFapitale": "Signpost",
+        "HistidineStar": "Door"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: HistidineStar, Skel",
+        "Steel_Blue nice, the bot broke at the end",
+        "Steel_Blue so",
+        "Second_Blue Queue: HistidineStar, Godde, Skel, Steel_Blue",
+        "Steel_Blue the bot says the queue is ['HistidineStar', 'empty.', 'Skel']",
+        "Steel_Blue but",
+        "Steel_Blue now it does not",
+        "DasFapitale is the bot python?",
+        "Steel_Blue yea",
+        "Steel_Blue now the empty is gone",
+        "Godde deq",
+        "Second_Blue Queue: HistidineStar, Skel, Steel_Blue",
+        "Steel_Blue alright so Freeze makes it not make new rooms",
+        "StiofanKingofAwoo cool",
+        "StiofanKingofAwoo (no pun intended xd)",
+        "Steel_Blue I know what all the buttons do now",
+        "DasFapitale is the code available, or no?",
+        "Steel_Blue yea check the forum thread, or I can give your the github",
+        "StiofanKingofAwoo theres a 1h 45 min nebulous 1c1",
+        "DasFapitale ok tyvm",
+        "Steel_Blue https://github.com/GoogleFrog/TourneyBot/blob/main/main.py",
+        "Steel_Blue it's a little wonkey, it's default set up to reach config files in the directory above the python script",
+        "Skel is it over",
+        "Steel_Blue yea I'm calling it over",
+        "Skel ok ty",
+        "Second_Blue Queue: Skel, Steel_Blue",
+        "Second_Blue Queue: Skel",
+        "StiofanKingofAwoo and into MM he goes!",
+        "Second_Blue Queue: empty",
+        "StiofanKingofAwoo spec-k!"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Fence": {
+            "name": "Fence",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "Godde",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Fence 8"
+        },
+        "Door": {
+            "name": "Door",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "HistidineStar",
+                "Skel"
+            ],
+            "createdName": "FC Door 7"
+        },
+        "Signpost": {
+            "name": "Signpost",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "DasFapitale",
+                "HistidineStar"
+            ],
+            "createdName": "FC Signpost 6"
+        },
+        "Well": {
+            "name": "Well",
+            "index": 0,
+            "finished": true
+        },
+        "Barn": {
+            "name": "Barn",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1698643": {
+            "series": "Door",
+            "name": "FC Door 1",
+            "winner": "Steel_Blue",
+            "loser": "HistidineStar"
+        },
+        "@B1698649": {
+            "series": "Fence",
+            "name": "FC Fence 1",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1698654": {
+            "series": "Signpost",
+            "name": "FC Signpost 1",
+            "winner": "Fine",
+            "loser": "HistidineStar"
+        },
+        "@B1698655": {
+            "series": "Door",
+            "name": "FC Door 2",
+            "winner": "Steel_Blue",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1698659": {
+            "series": "Signpost",
+            "name": "FC Signpost 2",
+            "winner": "Skel",
+            "loser": "HistidineStar"
+        },
+        "@B1698665": {
+            "series": "Fence",
+            "name": "FC Fence 2",
+            "winner": "Godde",
+            "loser": "Fine"
+        },
+        "@B1698670": {
+            "series": "Fence",
+            "name": "FC Fence 3",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1698672": {
+            "series": "Signpost",
+            "name": "FC Signpost 4",
+            "winner": "DasFapitale",
+            "loser": "Fine"
+        },
+        "@B1698673": {
+            "series": "Door",
+            "name": "FC Door 3",
+            "winner": "Steel_Blue",
+            "loser": "HistidineStar"
+        },
+        "@B1698678": {
+            "series": "Signpost",
+            "name": "FC Signpost 5",
+            "winner": "DasFapitale",
+            "loser": "Skel"
+        },
+        "@B1698680": {
+            "series": "Fence",
+            "name": "FC Fence 4",
+            "winner": "Godde",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1698682": {
+            "series": "Door",
+            "name": "FC Door 6",
+            "winner": "HistidineStar",
+            "loser": "Skel"
+        },
+        "@B1698691": {
+            "series": "Fence",
+            "name": "FC Fence 5",
+            "winner": "Godde",
+            "loser": "Steel_Blue"
+        },
+        "@B1698706": {
+            "series": "Door",
+            "name": "FC Door 7",
+            "winner": "HistidineStar",
+            "loser": "Skel"
+        },
+        "@B1698709": {
+            "series": "Fence",
+            "name": "FC Fence 8",
+            "winner": "Godde",
+            "loser": "Steel_Blue"
+        }
+    }
+}
