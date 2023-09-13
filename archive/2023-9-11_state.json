@@ -1,0 +1,156 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Godde": "Fields",
+        "TheWarning": "Well"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Steel_Blue wait you just woke",
+        "Pootis exit",
+        "Pootis yes",
+        "Steel_Blue isn't it evening",
+        "Pootis I haven't slept yesterday",
+        "Steel_Blue shucks",
+        "Pootis so I took a nap",
+        "Pootis how do I exit queue again?",
+        "Pootis gonna go eat",
+        "Steel_Blue deq",
+        "Pootis deq",
+        "Second_Blue Queue: empty",
+        "Steel_Blue I'm frezing the bot",
+        "Steel_Blue fightclub is \"over\"",
+        "Second_Blue Queue: TheWarning, Skel",
+        "Steel_Blue thank you",
+        "Steel_Blue thank you very much",
+        "Steel_Blue elvis",
+        "TheWarning damn pootis went offline",
+        "Skel banned all spider maps, cant ban all flat maps aswell",
+        "Skel thx",
+        "Godde q",
+        "Godde oh",
+        "Second_Blue Queue: TheWarning, Godde, Skel",
+        "Godde ggs",
+        "TheWarning deq",
+        "TheWarning GG",
+        "TheWarning wp",
+        "Second_Blue Queue: Godde, Skel",
+        "Second_Blue Queue: empty"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Fields": {
+            "name": "Fields",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "TheWarning",
+                "Godde"
+            ],
+            "createdName": "FC Fields 6"
+        },
+        "Well": {
+            "name": "Well",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "Skel",
+                "TheWarning"
+            ],
+            "createdName": "FC Well 6"
+        },
+        "Tractor": {
+            "name": "Tractor",
+            "index": 0,
+            "finished": true
+        },
+        "Barn": {
+            "name": "Barn",
+            "index": 0,
+            "finished": true
+        },
+        "Fence": {
+            "name": "Fence",
+            "index": 0,
+            "finished": true
+        },
+        "Farmhouse": {
+            "name": "Farmhouse",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1712140": {
+            "series": "Fields",
+            "name": "FC Fields 1",
+            "winner": "Skel",
+            "loser": "Qrow"
+        },
+        "@B1712145": {
+            "series": "Well",
+            "name": "FC Well 1",
+            "winner": "Godde",
+            "loser": "Steel_Blue"
+        },
+        "@B1712149": {
+            "series": "Fields",
+            "name": "FC Fields 2",
+            "winner": "TheWarning",
+            "loser": "Skel"
+        },
+        "@B1712158": {
+            "series": "Fields",
+            "name": "FC Fields 3",
+            "winner": "Godde",
+            "loser": "TheWarning"
+        },
+        "@B1712161": {
+            "series": "Fields",
+            "name": "FC Fields 4",
+            "winner": "TheWarning",
+            "loser": "Skel"
+        },
+        "@B1712164": {
+            "series": "Well",
+            "name": "FC Well 3",
+            "winner": "Godde",
+            "loser": "Pootis"
+        },
+        "@B1712168": {
+            "series": "Well",
+            "name": "FC Well 4",
+            "winner": "Pootis",
+            "loser": "Skel"
+        },
+        "@B1712172": {
+            "series": "Fields",
+            "name": "FC Fields 6",
+            "winner": "Godde",
+            "loser": "TheWarning"
+        },
+        "@B1712177": {
+            "series": "Well",
+            "name": "FC Well 5",
+            "winner": "Skel",
+            "loser": "Pootis"
+        },
+        "@B1712180": {
+            "series": "Well",
+            "name": "FC Well 6",
+            "winner": "TheWarning",
+            "loser": "Skel"
+        }
+    }
+}
