@@ -1,0 +1,308 @@
+{
+    "queue": [
+        "Godde",
+        "cooolcat1239"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "therxyy": "Courtyard",
+        "Godde": "Arena",
+        "MSPR": "Dungeon"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Skel troll mode",
+        "Skel but why not",
+        "Second_Blue Queue: Skel",
+        "Skel wp",
+        "Steel_Blue alright fightclub is closing down for the night",
+        "Skel ok thx Steel_Blue",
+        "Second_Blue Queue: empty",
+        "DarkBlueDiamond anyone wanna do small teams after fight club ends?",
+        "Second_Blue Queue: MSPR, Stuart98",
+        "Second_Blue Queue: Stuart98",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: therxyy, Mach56",
+        "Second_Blue Queue: Mach56",
+        "Second_Blue Queue: empty",
+        "Steel_Blue my head is a little loopy today",
+        "Steel_Blue my head is a little loopy today",
+        "Steel_Blue I think i played a little trolly too",
+        "Mach56 DarkBlueDiamond sure",
+        "GoogleFrog sure",
+        "Steel_Blue I can definately see where my purple disapeared to",
+        "Steel_Blue I won't be in 3v3 or smaller but 4v4 I'd join",
+        "Chungoose https://emoji.gg/sticker/5800-big-emoti-stage-hmmm",
+        "Helwor lel",
+        "Mach56 DarkBlueDiamond join the mm small/medium teams queue",
+        "Second_Blue Queue: Godde, cooolcat1239",
+        "Second_Blue Queue: cooolcat1239",
+        "DarkBlueDiamond huh fc is still going on after 6",
+        "Godde queue",
+        "Godde q",
+        "Second_Blue Queue: Godde, cooolcat1239"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 14,
+            "finished": true,
+            "players": [
+                "Godde",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Arena 14"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 11,
+            "finished": true,
+            "players": [
+                "cooolcat1239",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Battlements 11"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "therxyy",
+                "Mach56"
+            ],
+            "createdName": "FC Courtyard 10"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 3,
+            "finished": true,
+            "players": [
+                "MSPR",
+                "Stuart98"
+            ],
+            "createdName": "FC Dungeon 3"
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1792573": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "DarkBlueDiamond",
+            "loser": "Skel"
+        },
+        "@B1792581": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "therxyy",
+            "loser": "Fine"
+        },
+        "@B1792585": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1792587": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Mach56",
+            "loser": "DarkBlueDiamond"
+        },
+        "@B1792592": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "Stuart98",
+            "loser": "Steel_Blue"
+        },
+        "@B1792593": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1792596": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "therxyy",
+            "loser": "Fine"
+        },
+        "@B1792608": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1792609": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "Stuart98",
+            "loser": "DarkBlueDiamond"
+        },
+        "@B1792619": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "Stuart98",
+            "loser": "Mach56"
+        },
+        "@B1792620": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Skel",
+            "loser": "Fine"
+        },
+        "@B1792624": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "therxyy",
+            "loser": "Steel_Blue"
+        },
+        "@B1792630": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "Godde",
+            "loser": "Mach56"
+        },
+        "@B1792631": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "cooolcat1239",
+            "loser": "Stuart98"
+        },
+        "@B1792638": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1792643": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "Stuart98",
+            "loser": "Mach56"
+        },
+        "@B1792647": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Godde",
+            "loser": "cooolcat1239"
+        },
+        "@B1792652": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "therxyy",
+            "loser": "Stuart98"
+        },
+        "@B1792653": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 6",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1792654": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "Godde",
+            "loser": "cooolcat1239"
+        },
+        "@B1792661": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 7",
+            "winner": "Stuart98",
+            "loser": "Mach56"
+        },
+        "@B1792662": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "Steel_Blue",
+            "loser": "DarkBlueDiamond"
+        },
+        "@B1792664": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1792666": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 8",
+            "winner": "cooolcat1239",
+            "loser": "Mach56"
+        },
+        "@B1792671": {
+            "series": "Arena",
+            "name": "FC Arena 11",
+            "winner": "Godde",
+            "loser": "Stuart98"
+        },
+        "@B1792676": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 2",
+            "winner": "MSPR",
+            "loser": "Steel_Blue"
+        },
+        "@B1792678": {
+            "series": "Arena",
+            "name": "FC Arena 12",
+            "winner": "Godde",
+            "loser": "Mach56"
+        },
+        "@B1792679": {
+            "series": "Battlements",
+            "name": "FC Battlements 9",
+            "winner": "Skel",
+            "loser": "DarkBlueDiamond"
+        },
+        "@B1792684": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 9",
+            "winner": "therxyy",
+            "loser": "cooolcat1239"
+        },
+        "@B1792686": {
+            "series": "Arena",
+            "name": "FC Arena 13",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1792689": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 3",
+            "winner": "MSPR",
+            "loser": "Stuart98"
+        },
+        "@B1792691": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 10",
+            "winner": "therxyy",
+            "loser": "Mach56"
+        },
+        "@B1792697": {
+            "series": "Arena",
+            "name": "FC Arena 14",
+            "winner": "Godde",
+            "loser": "cooolcat1239"
+        }
+    }
+}
