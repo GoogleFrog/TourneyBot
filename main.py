@@ -103,9 +103,9 @@ def InitialiseWebDriver(state):
 	
 	# Using Chrome to access web
 	driver = sl.webdriver.Chrome()# Open the website
+	driver.implicitly_wait(10)
 	
 	driver.get('https://zero-k.info')
-	driver.implicitly_wait(0.5)
 	
 	nameBox = driver.find_element(By.NAME, 'login')
 	nameBox.send_keys(loginDetails[0])
@@ -117,7 +117,6 @@ def InitialiseWebDriver(state):
 	login_button.click()
 	
 	driver.get('https://zero-k.info/Tourney')
-	driver.implicitly_wait(0.5)
 	return driver
 
 
@@ -306,7 +305,6 @@ def SendLobbyMessage(driver, state, text):
 		return
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
-	driver.implicitly_wait(0.5)
 	
 	messageBox = driver.find_element(By.ID, 'chatbox')
 	messageBox.clear()
@@ -314,7 +312,6 @@ def SendLobbyMessage(driver, state, text):
 	messageBox.send_keys(Keys.RETURN)
 	
 	driver.get('https://zero-k.info/Tourney')
-	driver.implicitly_wait(0.5)
 
 
 def FindRoomForPlayers(state, players):
@@ -362,7 +359,6 @@ def MakeRooms(driver, roomsToMake):
 	joinAttempts = {}
 	tryForceJoin = True
 	while tryForceJoin:
-		driver.implicitly_wait(0.5)
 		tryForceJoin = False
 		rows = GetRoomTable(driver)
 		for name, rowData in rows.items():
@@ -373,7 +369,6 @@ def MakeRooms(driver, roomsToMake):
 					print('Force joining ' + name)
 					rowData['forceJoin'].click()
 					joinAttempts[name] = joinAttempts[name] + 1
-					driver.implicitly_wait(0.5 * joinAttempts[name])
 					tryForceJoin = True
 					break
 	return {n : (v < 4) for n, v in joinAttempts.items()}
@@ -387,7 +382,6 @@ def CheckJoinRooms(driver):
 	for name, rowData in rows.items():
 		if (not rowData['playersHaveJoined']) and 'battleID' not in rowData:
 			rowData['forceJoin'].click()
-			driver.implicitly_wait(0.5)
 			return
 
 
@@ -431,7 +425,6 @@ def CleanUpRooms(driver, state):
 			pageRooms[roomName]['delete'].click()
 			alert = Alert(driver)
 			alert.accept()
-			driver.implicitly_wait(0.5)
 			state['toDelete'].remove(roomName)
 	return state
 
@@ -472,7 +465,6 @@ def HandleRoomFinish(state, room, battleID, winner=False):
 def GetBattleWinner(driver, battleID):
 	print('Checking battle "{}"'.format(battleID))
 	driver.get('https://zero-k.info/Battles/Detail/{}?ShowWinners=True'.format(battleID))
-	driver.implicitly_wait(0.5)
 	
 	winnerBox = driver.find_element(By.CLASS_NAME, 'fleft.battle_winner')
 	elements = winnerBox.find_elements(By.XPATH, ".//*")
@@ -562,7 +554,6 @@ def UpdateChat(driver, state):
 		return state
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
-	driver.implicitly_wait(0.5)
 	
 	tables = driver.find_elements(By.XPATH, ".//*")
 	attempts = 0
@@ -653,7 +644,6 @@ def HandleMissingPlayers(driver, state, pageRooms):
 
 def UpdateGameState(driver, state):
 	driver.get('https://zero-k.info/Tourney') # Refresh page
-	driver.implicitly_wait(0.5)
 
 	pageRooms = GetRoomTable(driver)
 	if pageRooms is not False:
@@ -670,7 +660,6 @@ def UpdateGameState(driver, state):
 	state = ProcessNewChat(state)
 	
 	driver.get('https://zero-k.info/Tourney')
-	driver.implicitly_wait(0.5)
 	return state
 
 
@@ -679,7 +668,6 @@ def SendStateToLobby(driver, state):
 		return
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
-	driver.implicitly_wait(0.5)
 	
 	cleanQueue = [name for name in state['queue'] if name != WANT_FILL]
 	if len(cleanQueue) > 0:
@@ -693,7 +681,6 @@ def SendStateToLobby(driver, state):
 	messageBox.send_keys(Keys.RETURN)
 	
 	driver.get('https://zero-k.info/Tourney')
-	driver.implicitly_wait(0.5)
 
 
 def WriteAndPause(driver, state, waitTime):
