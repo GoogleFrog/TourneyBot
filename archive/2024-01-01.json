@@ -1,0 +1,128 @@
+{
+    "queue": [
+        "empty."
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Godde": "Arena",
+        "Skel": "Battlements"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Skel q",
+        "Second_Blue Queue: Skel",
+        "Second_Blue Queue: Godde, Skel, cooolcat1239",
+        "Second_Blue Queue: cooolcat1239",
+        "Second_Blue Queue: Godde, cooolcat1239, Skel",
+        "Second_Blue Queue: Skel",
+        "macrodemon q",
+        "Second_Blue Queue: Skel, macrodemon",
+        "Second_Blue Queue: empty",
+        "RiposteR wheres it say theres a fightclub?!",
+        "therxyy well",
+        "Second_Blue Queue: Godde, cooolcat1239",
+        "therxyy theres a discord announcement",
+        "therxyy err",
+        "therxyy event",
+        "Godde deq",
+        "Second_Blue Queue: cooolcat1239",
+        "cooolcat1239 deq",
+        "RiposteR deq",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: Skel, macrodemon",
+        "Second_Blue Queue: empty",
+        "Godde maybe RiposteR and cooolcat1239 should queue while I eat? :P",
+        "Second_Blue Queue: Skel, macrodemon",
+        "Skel deq",
+        "Second_Blue Queue: macrodemon",
+        "macrodemon deq",
+        "Second_Blue Queue: empty",
+        "Skel today is not a good fightclub day",
+        "macrodemon well now I know how it works"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 3,
+            "finished": true,
+            "players": [
+                "Godde",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Arena 3"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 2,
+            "finished": true,
+            "players": [
+                "Skel",
+                "macrodemon"
+            ],
+            "createdName": "FC Battlements 2"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 0,
+            "finished": true
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1795952": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Godde",
+            "loser": "cooolcat1239"
+        },
+        "@B1795964": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1795974": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Godde",
+            "loser": "cooolcat1239"
+        },
+        "@B1795983": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Skel",
+            "loser": "macrodemon"
+        },
+        "@B1795998": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Skel",
+            "loser": "macrodemon"
+        }
+    }
+}
