@@ -1,0 +1,234 @@
+{
+    "queue": [
+        "Steel_Blue",
+        "empty.",
+        "Skel"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "DasFapitale": "Battlements",
+        "RiposteR": "Battlements",
+        "therxyy": "Courtyard",
+        "DanWarior": "Arena",
+        "Steel_Blue": "Battlements"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: therxyy, Skel",
+        "Second_Blue Queue: empty",
+        "therxyy fc done?",
+        "therxyy deq",
+        "Skel no",
+        "Skel its not done",
+        "Skel q",
+        "Steel_Blue q",
+        "Steel_Blue oh bot broke?",
+        "Second_Blue Queue: Skel, DanWarior, Steel_Blue, Mach56",
+        "therxyy deq",
+        "Steel_Blue mah bad",
+        "Steel_Blue was afk",
+        "Steel_Blue bot not making...",
+        "Second_Blue Queue: empty",
+        "Steel_Blue I din't preess the button",
+        "Second_Blue Removing missing player DanWarior",
+        "Second_Blue Queue: Skel",
+        "Second_Blue Queue: Steel_Blue, Skel, Mach56",
+        "Mach56 deq",
+        "Second_Blue Queue: Mach56",
+        "Steel_Blue Hedkeaf fightclub is almost over",
+        "Second_Blue Queue: empty",
+        "Steel_Blue also the bot broke in the middle there",
+        "Hedkeaf kk",
+        "Second_Blue Queue: Steel_Blue, Skel",
+        "Steel_Blue ggs",
+        "Skel thx",
+        "Skel wp...",
+        "Steel_Blue sorry the bot broke in the middle..."
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "Skel",
+                "DanWarior"
+            ],
+            "createdName": "FC Arena 10"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "Steel_Blue",
+                "Skel"
+            ],
+            "createdName": "FC Battlements 8"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 9,
+            "finished": true,
+            "players": [
+                "therxyy",
+                "Skel"
+            ],
+            "createdName": "FC Courtyard 9"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1797607": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1797610": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "DasFapitale",
+            "loser": "therxyy"
+        },
+        "@B1797616": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "RiposteR",
+            "loser": "therxyy"
+        },
+        "@B1797617": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "DasFapitale",
+            "loser": "Skel"
+        },
+        "@B1797619": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Steel_Blue",
+            "loser": "cooolcat1239"
+        },
+        "@B1797628": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1797630": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "RiposteR",
+            "loser": "Steel_Blue"
+        },
+        "@B1797631": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "Skel",
+            "loser": "DanWarior"
+        },
+        "@B1797637": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1797638": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "therxyy",
+            "loser": "cooolcat1239"
+        },
+        "@B1797647": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "RiposteR",
+            "loser": "therxyy"
+        },
+        "@B1797649": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "Mach56",
+            "loser": "DanWarior"
+        },
+        "@B1797650": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1797653": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "RiposteR",
+            "loser": "Mach56"
+        },
+        "@B1797661": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 7",
+            "winner": "therxyy",
+            "loser": "DanWarior"
+        },
+        "@B1797665": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1797667": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1797671": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 8",
+            "winner": "therxyy",
+            "loser": "Skel"
+        },
+        "@B1797679": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "DanWarior",
+            "loser": "Mach56"
+        },
+        "@B1797688": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        },
+        "@B1797693": {
+            "series": "Battlements",
+            "name": "FC Battlements 8",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        }
+    }
+}
