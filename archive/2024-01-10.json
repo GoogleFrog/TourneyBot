@@ -1,0 +1,144 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Steel_Blue": "Arena",
+        "Skel": "Battlements"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Chungoose you kinda overinvested into porc",
+        "Chungoose you could of spammed fencers and raped me",
+        "Chungoose with the comm reclaim aswell",
+        "Mach56 well, I kinda suck at rover",
+        "Mach56 and dealing with aggressive players",
+        "Skel meh",
+        "Skel deq",
+        "Mach56 deq",
+        "Second_Blue Queue: Skel, Mach56",
+        "Skel dq",
+        "Skel deq",
+        "Second_Blue Queue: empty",
+        "Mach56 yeah fc is dead for now",
+        "Skel thx for your effort Steel_Blue",
+        "Mach56 ditto",
+        "Mach56 fc is popular for the first two weeks its back and then immediately dies",
+        "Chungoose i forgot about that flea in your base wtf",
+        "Second_Blue Queue: Steel_Blue, Chungoose",
+        "Second_Blue Queue: empty",
+        "Steel_Blue deq",
+        "Chungoose deq",
+        "Chungoose how do you de w",
+        "Second_Blue Queue: empty",
+        "Chungoose de q",
+        "Steel_Blue yea the bot only goes every 4 seconds",
+        "Steel_Blue and I think",
+        "Steel_Blue it needs 2 cycles to catch the deq",
+        "Chungoose ok",
+        "Steel_Blue it's a primitive chat reading bot, but there's fairly good feedback",
+        "Steel_Blue alright, fightclub is over"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "Steel_Blue",
+                "Chungoose"
+            ],
+            "createdName": "FC Arena 6"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 3,
+            "finished": true,
+            "players": [
+                "Skel",
+                "Mach56"
+            ],
+            "createdName": "FC Battlements 3"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 0,
+            "finished": true
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1803092": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        },
+        "@B1803101": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1803107": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        },
+        "@B1803108": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Skel",
+            "loser": "Chungoose"
+        },
+        "@B1803114": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1803117": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Chungoose",
+            "loser": "Mach56"
+        },
+        "@B1803123": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1803127": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Steel_Blue",
+            "loser": "Chungoose"
+        }
+    }
+}
