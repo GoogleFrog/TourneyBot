@@ -1,0 +1,244 @@
+{
+    "queue": [
+        "Godde",
+        "Steel_Blue",
+        "ATOSTIC",
+        "Mach56"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Godde": "Battlements",
+        "Steel_Blue": "Arena"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: Godde, ATOSTIC, Mach56",
+        "Second_Blue Queue: Mach56",
+        "Skel DEQ",
+        "Second_Blue Queue: Steel_Blue, Mach56",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: Godde, ATOSTIC",
+        "Second_Blue Queue: Godde, Steel_Blue, ATOSTIC, Mach56",
+        "Steel_Blue and fight club is over",
+        "Mach56 gg everyone",
+        "Steel_Blue bot didn't break today",
+        "Mach56 yay",
+        "Godde gg",
+        "Steel_Blue the error may not be resolved though",
+        "ATOSTIC i did not tryed to fight like a men",
+        "Steel_Blue the crashing event didn't occur",
+        "ATOSTIC :D",
+        "Steel_Blue so",
+        "Steel_Blue what do you guys thing",
+        "ATOSTIC its nice",
+        "Steel_Blue should I list everyone who participated in the fight club?",
+        "ATOSTIC and brutal",
+        "Steel_Blue or should I only list the \"award\" winners?",
+        "Steel_Blue in the forum post",
+        "ATOSTIC all",
+        "Steel_Blue game client can't proccess newlines in chat messege...",
+        "Steel_Blue Mach56 beat me today",
+        "Steel_Blue ATOSTIC took one off of Godde",
+        "Steel_Blue hallohallo lost all his games",
+        "ATOSTIC cuz he went gunshits yes",
+        "Steel_Blue 23 total games"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 9,
+            "finished": true,
+            "players": [
+                "Steel_Blue",
+                "Mach56"
+            ],
+            "createdName": "FC Arena 9"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 11,
+            "finished": true,
+            "players": [
+                "Godde",
+                "ATOSTIC"
+            ],
+            "createdName": "FC Battlements 11"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Skel",
+                "Stanley133"
+            ],
+            "createdName": "FC Courtyard 5"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1808704": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Skel",
+            "loser": "macrodemon"
+        },
+        "@B1808709": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Mach56",
+            "loser": "Steel_Blue"
+        },
+        "@B1808714": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1808722": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1808726": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "ATOSTIC",
+            "loser": "Mach56"
+        },
+        "@B1808731": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "Skel",
+            "loser": "hallohallo"
+        },
+        "@B1808738": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "Godde",
+            "loser": "Steel_Blue"
+        },
+        "@B1808743": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "ATOSTIC",
+            "loser": "Skel"
+        },
+        "@B1808744": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "Mach56",
+            "loser": "hallohallo"
+        },
+        "@B1808749": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "Skel",
+            "loser": "hallohallo"
+        },
+        "@B1808752": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "ATOSTIC",
+            "loser": "Mach56"
+        },
+        "@B1808754": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Steel_Blue",
+            "loser": "macrodemon"
+        },
+        "@B1808760": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "Skel",
+            "loser": "ATOSTIC"
+        },
+        "@B1808765": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        },
+        "@B1808771": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "ATOSTIC",
+            "loser": "Godde"
+        },
+        "@B1808774": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1808781": {
+            "series": "Battlements",
+            "name": "FC Battlements 8",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1808787": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "ATOSTIC",
+            "loser": "Steel_Blue"
+        },
+        "@B1808797": {
+            "series": "Battlements",
+            "name": "FC Battlements 9",
+            "winner": "Godde",
+            "loser": "ATOSTIC"
+        },
+        "@B1808800": {
+            "series": "Battlements",
+            "name": "FC Battlements 10",
+            "winner": "Godde",
+            "loser": "Mach56"
+        },
+        "@B1808802": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Steel_Blue",
+            "loser": "Skel"
+        },
+        "@B1808810": {
+            "series": "Battlements",
+            "name": "FC Battlements 11",
+            "winner": "Godde",
+            "loser": "ATOSTIC"
+        },
+        "@B1808811": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "Steel_Blue",
+            "loser": "Mach56"
+        }
+    }
+}
