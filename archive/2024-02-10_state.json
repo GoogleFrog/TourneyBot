@@ -1,0 +1,220 @@
+{
+    "queue": [
+        "Skel",
+        "marathon"
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "parcos": "Battlements",
+        "Godde": "Dungeon",
+        "Skel": "Courtyard",
+        "Mach56": "Arena",
+        "StiofanKingofAwoo": "Arena"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: empty",
+        "Steel_Blue I want to see if I get a push notification to my phone",
+        "Godde done",
+        "Steel_Blue I got a desktop push notificaiton",
+        "Steel_Blue could you try again?",
+        "Steel_Blue oh I got it on my phone noe",
+        "Godde ok",
+        "Steel_Blue maybe, because my computer recognizes me \"active\" I don't get a forceful push on my phone? could you ping me in zk offtopic?",
+        "Steel_Blue anyone, really",
+        "Steel_Blue also I'm closing fightclub queue",
+        "StiofanKingofAwoo nooooo",
+        "Second_Blue Queue: StiofanKingofAwoo, YUJU345",
+        "YUJU345 dequeue",
+        "StiofanKingofAwoo deq",
+        "YUJU345 deq",
+        "Second_Blue Queue: StiofanKingofAwoo",
+        "StiofanKingofAwoo joooooinn",
+        "StiofanKingofAwoo smallteams MM!",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: Skel, marathon",
+        "Steel_Blue fight club over",
+        "Steel_Blue thanks for joining",
+        "StiofanKingofAwoo team MM!!",
+        "Skel ok thx",
+        "StiofanKingofAwoo gogoooooooo",
+        "StiofanKingofAwoo thx for hosting",
+        "Steel_Blue team matchmaking? is it real?",
+        "Steel_Blue real game? matchmaking time?",
+        "StiofanKingofAwoo it can be, if you belive",
+        "Steel_Blue sorry for some interruptions in the middle"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "StiofanKingofAwoo",
+                "YUJU345"
+            ],
+            "createdName": "FC Arena 10"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "Skel",
+                "StiofanKingofAwoo"
+            ],
+            "createdName": "FC Battlements 6"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "marathon",
+                "Skel"
+            ],
+            "createdName": "FC Courtyard 5"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Chungoose",
+                "Godde"
+            ],
+            "createdName": "FC Dungeon 5"
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1827614": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Chungoose",
+            "loser": "Skel"
+        },
+        "@B1827628": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Mach56",
+            "loser": "marathon"
+        },
+        "@B1827636": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "Skel",
+            "loser": "parcos"
+        },
+        "@B1827639": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Chungoose",
+            "loser": "Mach56"
+        },
+        "@B1827653": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "Skel",
+            "loser": "Chungoose"
+        },
+        "@B1827661": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "parcos",
+            "loser": "Mach56"
+        },
+        "@B1827669": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "Godde",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1827679": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "marathon",
+            "loser": "nixat6937"
+        },
+        "@B1827675": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 2",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1827688": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "Mach56",
+            "loser": "Chungoose"
+        },
+        "@B1827691": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 3",
+            "winner": "Godde",
+            "loser": "marathon"
+        },
+        "@B1827692": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1827695": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "StiofanKingofAwoo",
+            "loser": "nixat6937"
+        },
+        "@B1827716": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "Mach56",
+            "loser": "nixat6937"
+        },
+        "@B1827715": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "Skel",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1827722": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "marathon",
+            "loser": "Chungoose"
+        },
+        "@B1827752": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "StiofanKingofAwoo",
+            "loser": "YUJU345"
+        },
+        "@B1827762": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "Skel",
+            "loser": "marathon"
+        }
+    }
+}
