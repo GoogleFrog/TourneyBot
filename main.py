@@ -4,6 +4,7 @@ import random
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import StaleElementReferenceException
 import pprint
 import json
 
@@ -548,21 +549,33 @@ def ScoreListOverlap(baseList, newList, offset):
 			score = score + 1
 	return score
 
-
 def UpdateChat(driver, state):
 	if state['lobbyChannel'] is False:
 		return state
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
-	
-	tables = driver.find_elements(By.XPATH, ".//*")
-	attempts = 0
-	while attempts < 500 and 'Loading chat messages...' in [x.text for x in tables]:
-		attempts = attempts + 1
-		time.sleep(0.03)
+	textList = None
+	read_complete = False
+	for _ in range(50):
+		if (read_complete):
+			break
 		tables = driver.find_elements(By.XPATH, ".//*")
+		try:
+			if 'Loading chat messages...' in [x.text for x in tables]:
+				time.sleep(0.05)
+				tables = driver.find_elements(By.XPATH, ".//*")
+			textList = [x.text for x in tables]
+			read_complete = True
+		except StaleElementReferenceException:
+			print('StaleElementReferenceException caught')
+			time.sleep(0.15)
+			# dummy get link to refresh page
+			driver.get('https://zero-k.info/')
+			driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
+	if not read_complete:
+		print('chat not read')
+		return state
 	
-	textList = [x.text for x in tables]
 	chatList = False
 	for text in textList:
 		if 'ago' in text and '\n' in text:
