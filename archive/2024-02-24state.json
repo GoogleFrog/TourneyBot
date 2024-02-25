@@ -1,0 +1,372 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Godde": "Tower",
+        "Jill_2550": "Courtyard",
+        "cooolcat1239": "Field",
+        "DarkBlueDiamond": "Tower",
+        "RiposteR": "Dungeon",
+        "MSPR": "Battlements",
+        "Mach56": "Arena"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Skel cause i go cloak anyway",
+        "RiposteR cloak used to be good on that map",
+        "Steel_Blue well you got one fight game, right?",
+        "RiposteR maybe its good again with the buffs?",
+        "RiposteR yup",
+        "Steel_Blue now is the advertisement for teams matchmaker",
+        "Skel well it is ok but its not an easy map for that mu",
+        "Skel test",
+        "Skel and win % was accurate",
+        "Second_Blue Queue: MSPR, cooolcat1239, RiposteR, Godde, Skel, PonziScheme, n2o",
+        "Steel_Blue games are over",
+        "n2o thank you",
+        "Steel_Blue thanks for comming!",
+        "MSPR cheers",
+        "MSPR thanks for organizing",
+        "MSPR fun games",
+        "Steel_Blue MSPR, the newest bandaid seems to have some promise",
+        "Steel_Blue it does recover a bit",
+        "Second_Blue Queue: Mach56, MSPR, cooolcat1239, RiposteR, Godde, Skel, PonziScheme, n2o, Myopic",
+        "Myopic q",
+        "Steel_Blue sometimes it does irreparably crash",
+        "Mach56 guys join medium teams",
+        "Second_Blue Queue: Jill_2550, Mach56, MSPR, cooolcat1239, RiposteR, Godde, Skel, PonziScheme, n2o, Myopic, AN94",
+        "Second_Blue Queue: Mach56, MSPR, cooolcat1239, RiposteR, Godde, Skel, PonziScheme, n2o, Myopic, AN94",
+        "Second_Blue Queue: MSPR, cooolcat1239, RiposteR, Godde, Skel, PonziScheme, n2o, Myopic, AN94",
+        "Second_Blue Queue: RiposteR, Godde, Skel, PonziScheme, n2o, Myopic, AN94",
+        "Second_Blue Queue: RiposteR, Skel, PonziScheme, n2o, Myopic, AN94",
+        "Second_Blue Queue: RiposteR, Myopic, AN94",
+        "Second_Blue Queue: RiposteR, AN94",
+        "Second_Blue Queue: empty"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 11,
+            "finished": true,
+            "players": [
+                "Mach56",
+                "Myopic"
+            ],
+            "createdName": "FC Arena 11"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 9,
+            "finished": true,
+            "players": [
+                "n2o",
+                "MSPR"
+            ],
+            "createdName": "FC Battlements 9"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "Jill_2550",
+                "AN94"
+            ],
+            "createdName": "FC Courtyard 8"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "Skel",
+                "RiposteR"
+            ],
+            "createdName": "FC Dungeon 7"
+        },
+        "Field": {
+            "name": "Field",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "StiofanKingofAwoo",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Field 7"
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 4,
+            "finished": true,
+            "players": [
+                "PonziScheme",
+                "Godde"
+            ],
+            "createdName": "FC Tower 4"
+        },
+        "Overflow": {
+            "name": "Overflow",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1838278": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "cooolcat1239",
+            "loser": "Lokisar"
+        },
+        "@B1838282": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "DarkBlueDiamond",
+            "loser": "Myopic"
+        },
+        "@B1838284": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1838291": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "MSPR",
+            "loser": "Lokisar"
+        },
+        "@B1838294": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "DarkBlueDiamond",
+            "loser": "nixat6937"
+        },
+        "@B1838295": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Skel",
+            "loser": "Myopic"
+        },
+        "@B1838303": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 2",
+            "winner": "MSPR",
+            "loser": "Mach56"
+        },
+        "@B1838310": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Myopic"
+        },
+        "@B1838312": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "cooolcat1239",
+            "loser": "Jill_2550"
+        },
+        "@B1838315": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "Skel",
+            "loser": "DarkBlueDiamond"
+        },
+        "@B1838314": {
+            "series": "Field",
+            "name": "FC Field 1",
+            "winner": "Lokisar",
+            "loser": "n2o"
+        },
+        "@B1838322": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Mach56"
+        },
+        "@B1838330": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "cooolcat1239",
+            "loser": "Myopic"
+        },
+        "@B1838334": {
+            "series": "Field",
+            "name": "FC Field 2",
+            "winner": "Skel",
+            "loser": "Lokisar"
+        },
+        "@B1838342": {
+            "series": "Field",
+            "name": "FC Field 3",
+            "winner": "Skel",
+            "loser": "PonziScheme"
+        },
+        "@B1838346": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "cooolcat1239",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1838350": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Jill_2550",
+            "loser": "n2o"
+        },
+        "@B1838353": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "Mach56",
+            "loser": "Myopic"
+        },
+        "@B1838354": {
+            "series": "Field",
+            "name": "FC Field 4",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1838363": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 3",
+            "winner": "Skel",
+            "loser": "Myopic"
+        },
+        "@B1838368": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "cooolcat1239",
+            "loser": "Mach56"
+        },
+        "@B1838370": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "StiofanKingofAwoo",
+            "loser": "PonziScheme"
+        },
+        "@B1838377": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "Godde",
+            "loser": "Jill_2550"
+        },
+        "@B1838383": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 4",
+            "winner": "Skel",
+            "loser": "cooolcat1239"
+        },
+        "@B1838388": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "PonziScheme",
+            "loser": "AN94"
+        },
+        "@B1838389": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 6",
+            "winner": "Mach56",
+            "loser": "Myopic"
+        },
+        "@B1838391": {
+            "series": "Field",
+            "name": "FC Field 5",
+            "winner": "Jill_2550",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1838392": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "Godde",
+            "loser": "n2o"
+        },
+        "@B1838399": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 5",
+            "winner": "Skel",
+            "loser": "PonziScheme"
+        },
+        "@B1838406": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "cooolcat1239",
+            "loser": "AN94"
+        },
+        "@B1838414": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 7",
+            "winner": "Jill_2550",
+            "loser": "Mach56"
+        },
+        "@B1838413": {
+            "series": "Field",
+            "name": "FC Field 6",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Myopic"
+        },
+        "@B1838421": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 6",
+            "winner": "Skel",
+            "loser": "n2o"
+        },
+        "@B1838423": {
+            "series": "Battlements",
+            "name": "FC Battlements 8",
+            "winner": "Godde",
+            "loser": "MSPR"
+        },
+        "@B1838424": {
+            "series": "Tower",
+            "name": "FC Tower 1",
+            "winner": "DarkBlueDiamond",
+            "loser": "PonziScheme"
+        },
+        "@B1838430": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 7",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1838431": {
+            "series": "Tower",
+            "name": "FC Tower 4",
+            "winner": "Godde",
+            "loser": "PonziScheme"
+        },
+        "@B1838434": {
+            "series": "Field",
+            "name": "FC Field 7",
+            "winner": "cooolcat1239",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1838442": {
+            "series": "Battlements",
+            "name": "FC Battlements 9",
+            "winner": "MSPR",
+            "loser": "n2o"
+        },
+        "@B1838443": {
+            "series": "Arena",
+            "name": "FC Arena 11",
+            "winner": "Mach56",
+            "loser": "Myopic"
+        },
+        "@B1838488": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 8",
+            "winner": "Jill_2550",
+            "loser": "AN94"
+        }
+    }
+}
