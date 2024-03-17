@@ -1,0 +1,334 @@
+{
+    "queue": [],
+    "maxQueueLength": 1,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 1,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "StiofanKingofAwoo": "Arena",
+        "Godde": "Arena",
+        "ATOSTIC": "Courtyard",
+        "MSPR": "Dungeon"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [
+        "FC Courtyard 7"
+    ],
+    "prevChat": [
+        "Godde hum",
+        "Mach56 MSPR I can leave so you can fight Godde",
+        "Mach56 dq",
+        "Mach56 q",
+        "Second_Blue Queue: Skel, marathon",
+        "marathon deq",
+        "Second_Blue Queue: Skel",
+        "Second_Blue Queue: Skel, Godde, Mach56",
+        "Second_Blue Queue: Mach56",
+        "marathon q",
+        "Second_Blue Queue: Mach56, marathon",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: skigear, yanom",
+        "skigear what happened yanom",
+        "yanom leave",
+        "yanom couldn't deal with Emissary+Ogre",
+        "skigear oh",
+        "Second_Blue Queue: skigear, ATOSTIC, iwantusername",
+        "yanom no clue what would have fixed that",
+        "Second_Blue Queue: iwantusername",
+        "skigear probably air",
+        "marathon deq",
+        "YUJU345 q",
+        "Mach56 deq",
+        "iwantusername by",
+        "iwantusername gn8",
+        "marathon fun night",
+        "skigear is fc over?",
+        "skigear small Teams !",
+        "Godde ggs"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 14,
+            "finished": false,
+            "players": [
+                "iwantusername",
+                "Skel"
+            ],
+            "createdName": "FC Arena 14"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 11,
+            "finished": false,
+            "players": [
+                "skigear",
+                "YUJU345"
+            ],
+            "createdName": "FC Battlements 11"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 8,
+            "finished": false,
+            "players": [
+                "ATOSTIC",
+                "Godde"
+            ],
+            "createdName": "FC Courtyard 8"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "Mach56",
+                "marathon"
+            ],
+            "createdName": "FC Dungeon 10"
+        },
+        "Estate": {
+            "name": "Estate",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Gate": {
+            "name": "Gate",
+            "index": 0,
+            "finished": true
+        },
+        "Harbor": {
+            "name": "Harbor",
+            "index": 0,
+            "finished": true
+        },
+        "Island": {
+            "name": "Island",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1854266": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Skel",
+            "loser": "marathon"
+        },
+        "@B1854270": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "Mach56",
+            "loser": "mydream1000"
+        },
+        "@B1854271": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "StiofanKingofAwoo",
+            "loser": "yanom"
+        },
+        "@B1854273": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Skel",
+            "loser": "yuvyuv"
+        },
+        "@B1854277": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "Godde",
+            "loser": "ATOSTIC"
+        },
+        "@B1854288": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1854295": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 2",
+            "winner": "ATOSTIC",
+            "loser": "yuvyuv"
+        },
+        "@B1854297": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "Mach56",
+            "loser": "marathon"
+        },
+        "@B1854299": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "Godde",
+            "loser": "iwantusername"
+        },
+        "@B1854303": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "Skel",
+            "loser": "yanom"
+        },
+        "@B1854305": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 3",
+            "winner": "ATOSTIC",
+            "loser": "Mach56"
+        },
+        "@B1854308": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "Skel",
+            "loser": "iwantusername"
+        },
+        "@B1854310": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Godde",
+            "loser": "marathon"
+        },
+        "@B1854322": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1854321": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 4",
+            "winner": "ATOSTIC",
+            "loser": "yanom"
+        },
+        "@B1854329": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "iwantusername",
+            "loser": "skigear"
+        },
+        "@B1854333": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 5",
+            "winner": "Skel",
+            "loser": "ATOSTIC"
+        },
+        "@B1854340": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "ATOSTIC",
+            "loser": "MSPR"
+        },
+        "@B1854341": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "iwantusername",
+            "loser": "yanom"
+        },
+        "@B1854342": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "Mach56",
+            "loser": "marathon"
+        },
+        "@B1854345": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "ATOSTIC",
+            "loser": "iwantusername"
+        },
+        "@B1854349": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 6",
+            "winner": "Skel",
+            "loser": "skigear"
+        },
+        "@B1854350": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "MSPR",
+            "loser": "yanom"
+        },
+        "@B1854356": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "ATOSTIC",
+            "loser": "Mach56"
+        },
+        "@B1854359": {
+            "series": "Battlements",
+            "name": "FC Battlements 8",
+            "winner": "marathon",
+            "loser": "iwantusername"
+        },
+        "@B1854367": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 7",
+            "winner": "MSPR",
+            "loser": "Skel"
+        },
+        "@B1854368": {
+            "series": "Arena",
+            "name": "FC Arena 11",
+            "winner": "ATOSTIC",
+            "loser": "marathon"
+        },
+        "@B1854369": {
+            "series": "Battlements",
+            "name": "FC Battlements 9",
+            "winner": "iwantusername",
+            "loser": "Mach56"
+        },
+        "@B1854376": {
+            "series": "Arena",
+            "name": "FC Arena 12",
+            "winner": "Skel",
+            "loser": "marathon"
+        },
+        "@B1854378": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 9",
+            "winner": "Godde",
+            "loser": "Mach56"
+        },
+        "@B1854380": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 6",
+            "winner": "skigear",
+            "loser": "yanom"
+        },
+        "@B1854381": {
+            "series": "Battlements",
+            "name": "FC Battlements 10",
+            "winner": "ATOSTIC",
+            "loser": "iwantusername"
+        },
+        "@B1854391": {
+            "series": "Arena",
+            "name": "FC Arena 13",
+            "winner": "Godde",
+            "loser": "Skel"
+        },
+        "@B1854395": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 7",
+            "winner": "ATOSTIC",
+            "loser": "skigear"
+        }
+    }
+}

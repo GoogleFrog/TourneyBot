@@ -1,0 +1,232 @@
+{
+    "queue": [
+        "empty."
+    ],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Skel": "Courtyard",
+        "Kingstad": "Battlements",
+        "ATOSTIC": "Arena"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "ATOSTIC how long does fc go",
+        "cooolcat1239 24 more minutes",
+        "ATOSTIC ok",
+        "Second_Blue Queue: ATOSTIC, marathon, yanom",
+        "Second_Blue Queue: yanom",
+        "marathon dq",
+        "marathon dq",
+        "Skel wanna exit that game retroperspective? even the graphs wasnt accurate",
+        "Skel from my perspective it was over i guess oyurs looked different",
+        "marathon dq",
+        "ATOSTIC what is goin gon",
+        "yanom sync errors again?",
+        "Skel no im talking about our game, not again",
+        "yanom oh gotcha",
+        "yanom eeeeeh it's whatever",
+        "marathon dq",
+        "yanom i feel like i blundered after the nuke hit so wouldnt have won anyway",
+        "Skel the graph for example shows different army value for you then you have ingame i counted",
+        "Skel so i guess the game looked very different for you",
+        "yanom oh wow",
+        "yanom yeah let's scrub that one lol",
+        "yanom anyway i gotta head out but i had fun! see yall next week",
+        "Skel i dont know what do you see int he replay",
+        "Skel byee",
+        "Second_Blue Queue: empty",
+        "Steel_Blue I'll close down the bot",
+        "Skel on my screen the game was seconds from over...",
+        "Second_Blue Queue: ATOSTIC, marathon",
+        "marathon dq",
+        "Second_Blue Queue: marathon"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 11,
+            "finished": true,
+            "players": [
+                "ATOSTIC",
+                "marathon"
+            ],
+            "createdName": "FC Arena 11"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 6,
+            "finished": true,
+            "players": [
+                "marathon",
+                "yanom"
+            ],
+            "createdName": "FC Battlements 6"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "Skel",
+                "marathon"
+            ],
+            "createdName": "FC Courtyard 7"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Estate": {
+            "name": "Estate",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Gate": {
+            "name": "Gate",
+            "index": 0,
+            "finished": true
+        },
+        "Harbor": {
+            "name": "Harbor",
+            "index": 0,
+            "finished": true
+        },
+        "Island": {
+            "name": "Island",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1848888": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "cooolcat1239",
+            "loser": "marathon"
+        },
+        "@B1848898": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1848901": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Kingstad",
+            "loser": "marathon"
+        },
+        "@B1848908": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "Kingstad",
+            "loser": "cooolcat1239"
+        },
+        "@B1848917": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Kingstad",
+            "loser": "ATOSTIC"
+        },
+        "@B1848918": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "marathon",
+            "loser": "Skel"
+        },
+        "@B1848922": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "Skel",
+            "loser": "yanom"
+        },
+        "@B1848931": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "ATOSTIC",
+            "loser": "marathon"
+        },
+        "@B1848933": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "cooolcat1239",
+            "loser": "Kingstad"
+        },
+        "@B1848937": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "ATOSTIC",
+            "loser": "yanom"
+        },
+        "@B1848941": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "Skel",
+            "loser": "Jill_2550"
+        },
+        "@B1848942": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "cooolcat1239",
+            "loser": "marathon"
+        },
+        "@B1848948": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Kingstad",
+            "loser": "ATOSTIC"
+        },
+        "@B1848958": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "cooolcat1239",
+            "loser": "marathon"
+        },
+        "@B1848962": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 6",
+            "winner": "Skel",
+            "loser": "yanom"
+        },
+        "@B1848967": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "ATOSTIC",
+            "loser": "cooolcat1239"
+        },
+        "@B1848975": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "marathon",
+            "loser": "yanom"
+        },
+        "@B1848989": {
+            "series": "Arena",
+            "name": "FC Arena 11",
+            "winner": "ATOSTIC",
+            "loser": "marathon"
+        }
+    }
+}
