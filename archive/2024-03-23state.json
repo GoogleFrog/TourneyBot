@@ -1,0 +1,355 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "RiposteR": "Arena",
+        "StiofanKingofAwoo": "Courtyard",
+        "Vorpalkitty": "Battlements",
+        "cooolcat1239": "Field",
+        "ATOSTIC": "Battlements"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: DanWarior",
+        "Steel_Blue dan is disapeared again?",
+        "Steel_Blue something not amazing happened",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: ATOSTIC, Myopic",
+        "Myopic dequeue",
+        "Second_Blue Queue: ATOSTIC",
+        "Second_Blue Queue: ATOSTIC, marathon, iwantusername",
+        "Second_Blue Queue: iwantusername",
+        "marathon dq",
+        "cooolcat1239 deq",
+        "Second_Blue Queue: iwantusername, Skel",
+        "Skel exit",
+        "Second_Blue Queue: empty",
+        "Skel dq",
+        "Skel exit",
+        "ATOSTIC so we all exit?",
+        "Steel_Blue oh?",
+        "Second_Blue Queue: iwantusername",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: empty",
+        "Steel_Blue alright, fight club will be over at the end of your last game!",
+        "Steel_Blue thanks for comming",
+        "Second_Blue Queue: ATOSTIC, marathon",
+        "marathon dq",
+        "Steel_Blue ggs",
+        "marathon gg",
+        "ATOSTIC dq",
+        "Second_Blue Queue: marathon",
+        "Second_Blue Queue: empty"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 12,
+            "finished": true,
+            "players": [
+                "iwantusername",
+                "Skel"
+            ],
+            "createdName": "FC Arena 12"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 11,
+            "finished": true,
+            "players": [
+                "ATOSTIC",
+                "marathon"
+            ],
+            "createdName": "FC Battlements 11"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "DanWarior",
+                "yanom"
+            ],
+            "createdName": "FC Courtyard 7"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 4,
+            "finished": true,
+            "players": [
+                "ATOSTIC",
+                "Vorpalkitty"
+            ],
+            "createdName": "FC Dungeon 4"
+        },
+        "Estate": {
+            "name": "Estate",
+            "index": 4,
+            "finished": true,
+            "players": [
+                "ATOSTIC",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Estate 4"
+        },
+        "Field": {
+            "name": "Field",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "Skel",
+                "cooolcat1239"
+            ],
+            "createdName": "FC Field 5"
+        },
+        "Gate": {
+            "name": "Gate",
+            "index": 0,
+            "finished": true
+        },
+        "Harbor": {
+            "name": "Harbor",
+            "index": 0,
+            "finished": true
+        },
+        "Island": {
+            "name": "Island",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1859355": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "RiposteR",
+            "loser": "Vorpalkitty"
+        },
+        "@B1859356": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1859358": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Vorpalkitty",
+            "loser": "Steel_Blue"
+        },
+        "@B1859362": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1859364": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "ATOSTIC",
+            "loser": "Vorpalkitty"
+        },
+        "@B1859363": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "marathon",
+            "loser": "Mach56"
+        },
+        "@B1859367": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "RiposteR",
+            "loser": "Myopic"
+        },
+        "@B1859377": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "RiposteR",
+            "loser": "Mach56"
+        },
+        "@B1859378": {
+            "series": "Arena",
+            "name": "FC Arena 4",
+            "winner": "Skel",
+            "loser": "Vorpalkitty"
+        },
+        "@B1859379": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "ATOSTIC",
+            "loser": "marathon"
+        },
+        "@B1859383": {
+            "series": "Estate",
+            "name": "FC Estate 1",
+            "winner": "StiofanKingofAwoo",
+            "loser": "DanWarior"
+        },
+        "@B1859388": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1859389": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Vorpalkitty",
+            "loser": "Mach56"
+        },
+        "@B1859392": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 2",
+            "winner": "cooolcat1239",
+            "loser": "Steel_Blue"
+        },
+        "@B1859393": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "ATOSTIC",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1859400": {
+            "series": "Field",
+            "name": "FC Field 1",
+            "winner": "iwantusername",
+            "loser": "Myopic"
+        },
+        "@B1859403": {
+            "series": "Arena",
+            "name": "FC Arena 6",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1859404": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 3",
+            "winner": "ATOSTIC",
+            "loser": "cooolcat1239"
+        },
+        "@B1859406": {
+            "series": "Battlements",
+            "name": "FC Battlements 6",
+            "winner": "Vorpalkitty",
+            "loser": "RiposteR"
+        },
+        "@B1859409": {
+            "series": "Estate",
+            "name": "FC Estate 2",
+            "winner": "DanWarior",
+            "loser": "marathon"
+        },
+        "@B1859412": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 4",
+            "winner": "ATOSTIC",
+            "loser": "Vorpalkitty"
+        },
+        "@B1859414": {
+            "series": "Field",
+            "name": "FC Field 2",
+            "winner": "Skel",
+            "loser": "iwantusername"
+        },
+        "@B1859417": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1859419": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Steel_Blue"
+        },
+        "@B1859422": {
+            "series": "Estate",
+            "name": "FC Estate 3",
+            "winner": "ATOSTIC",
+            "loser": "DanWarior"
+        },
+        "@B1859423": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "RiposteR",
+            "loser": "iwantusername"
+        },
+        "@B1859424": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "Vorpalkitty",
+            "loser": "marathon"
+        },
+        "@B1859425": {
+            "series": "Field",
+            "name": "FC Field 3",
+            "winner": "Skel",
+            "loser": "yanom"
+        },
+        "@B1859437": {
+            "series": "Field",
+            "name": "FC Field 4",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1859439": {
+            "series": "Estate",
+            "name": "FC Estate 4",
+            "winner": "cooolcat1239",
+            "loser": "ATOSTIC"
+        },
+        "@B1859448": {
+            "series": "Arena",
+            "name": "FC Arena 10",
+            "winner": "iwantusername",
+            "loser": "DanWarior"
+        },
+        "@B1859450": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 5",
+            "winner": "marathon",
+            "loser": "yanom"
+        },
+        "@B1859453": {
+            "series": "Battlements",
+            "name": "FC Battlements 10",
+            "winner": "ATOSTIC",
+            "loser": "Myopic"
+        },
+        "@B1859456": {
+            "series": "Arena",
+            "name": "FC Arena 11",
+            "winner": "marathon",
+            "loser": "iwantusername"
+        },
+        "@B1859459": {
+            "series": "Field",
+            "name": "FC Field 5",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1859472": {
+            "series": "Battlements",
+            "name": "FC Battlements 11",
+            "winner": "ATOSTIC",
+            "loser": "marathon"
+        }
+    }
+}
