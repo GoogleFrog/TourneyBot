@@ -42,10 +42,58 @@ QUEUE_PHRASES = [
 ]
 
 LEAVE_PHRASES = [
-	'leave', 'unqueue', 'dequeue', 'unq', 'deq',
+	'leave', 'unqueue', 'dequeue', 'unq', 'deq', 'dq', 'exit'
 ]
 
 state = {}
+
+class Queue(list):
+	def __new__(self, *args, **kwargs):
+		return super().__new__(self)
+
+	def enqueue_two(self, winner, loser):
+		# place winner in queue
+		if len(self) == 0:
+			self.append(winner)
+			self.append(WANT_FILL)
+		elif WANT_FILL in self:
+			fillIndex = [i for i, x in enumerate(self) if x == WANT_FILL][0]
+			self[fillIndex] = winner
+		else:
+			self.insert(0,winner)
+		# place loser at end of queue
+		self.append(loser)
+
+	def add_new_player(self, new_player):
+		if WANT_FILL in self:
+			fillIndex = [i for i, x in enumerate(self) if x == WANT_FILL][0]
+			self[fillIndex] = new_player
+		else:
+			self.append(new_player)
+
+	def can_make_game(self):
+		return len(self) > 1 and WANT_FILL not in self
+
+	def take_game_players(self):
+		if not self.can_make_game():
+			print("IT'S KIND OF A HUGE DEAL CHARLIE, CAN'T TAKE 2 PLAYERS FROM QUEUE CAUSE NOT ENOUGH PLAYERS")
+			return None
+		ret = self[:2]
+		self.reverse()
+		self.pop()
+		self.pop()
+		self.reverse()
+		return ret
+
+	def get_clean_queue(self):
+		return Queue([name for name in self if name != WANT_FILL])
+
+def queue_sample():
+	ret = Queue()
+	ret.append('adam')
+	ret.append(WANT_FILL)
+	ret.append('britney')
+	return ret
 
 def WriteState(state):
 	with open(stateFile + '.json', 'w') as outfile:
@@ -54,7 +102,9 @@ def WriteState(state):
 
 def ReadState():
 	with open(stateFile + '.json', 'r') as f:
-		return json.load(f)
+		state = json.load(f)
+	state['queue'] = Queue(state['queue'])
+	return state
 
 
 def LoadFileToList(fileName):
@@ -66,15 +116,6 @@ def Opt(table, parameter, default=False):
 	if parameter in table:
 		return table[parameter]
 	return default
-
-
-def ListRemove(myList, element):
-	if element not in myList:
-		return myList
-	myList = myList.copy()
-	myList.remove(element)
-	return myList
-
 
 def DictRemove(myDict, element):
 	if element not in myDict:
@@ -143,10 +184,10 @@ def ProcessTableRow(row):
 		rowData['missingPlayers'] = [p for p in rowData['players'] if (p + '   IN' not in elementNames[0])]
 	
 	selectNext = False
+	rowData['battleID'] = list()
 	for name, element in elements.items():
-		if selectNext and element.text.count(' ') == 0:
-			rowData['battleID'] = element.text[1:]
-			break
+		if selectNext and element.text.count(' ') == 0 and 'e' not in element.text:
+			rowData['battleID'].append(element.text[1:])
 		if name.count(' 2 on ') > 0:
 			selectNext = True
 	return elementNames[1], rowData
@@ -173,6 +214,7 @@ def GetRoomTable(driver):
 def InitializeState():
 	if os.path.isfile(stateFile + '.json'):
 		state = ReadState()
+		state['queue'] = Queue(state['queue'])
 		return state
 	players = LoadFileToList(playerListFile)
 	roomNames = LoadFileToList(roomListFile)
@@ -203,6 +245,7 @@ def InitializeState():
 		} for name in roomNames},
 		'completedGames' : {},
 	}
+	state['queue'] = Queue(state['queue'])
 	WriteState(state)
 	return state
 
@@ -210,7 +253,7 @@ def InitializeState():
 def UpdateUiStatus(state):
 	global statusString
 	runningRooms = [data for name, data in state['rooms'].items() if not data['finished']]
-	status = 'Queue: {}'.format(state['queue'])
+	status = 'Queue: {}'.format(list(state['queue']))
 	for room in runningRooms:
 		roomSummary = '{}: {} vs {}'.format(
 			room['createdName'], room['players'][0], room['players'][1])
@@ -220,7 +263,7 @@ def UpdateUiStatus(state):
 
 def PrintState(state):
 	runningRooms = [data for name, data in state['rooms'].items() if not data['finished']]
-	status = 'Queue: {}'.format(state['queue'])
+	status = 'Queue: {}'.format(list(state['queue']))
 	print(status)
 	for room in runningRooms:
 		roomSummary = '{}: {} vs {}'.format(
@@ -328,14 +371,6 @@ def FindRoomForPlayers(state, players):
 			return state['rooms'][room]
 	return False
 
-
-def ReplaceWantFill(state, player):
-	fillIndex = [i for i, x in enumerate(state['queue']) if x == WANT_FILL][0]
-	state['queue'][fillIndex] = player
-	state['stateUpdated'] = True
-	return state
-
-
 def MakeRooms(driver, roomsToMake):
 	roomStr = ''
 	first = True
@@ -388,16 +423,18 @@ def CheckJoinRooms(driver):
 
 def SetupRequiredRooms(driver, state):
 	rooms = {}
-	while (len(state['queue']) > state['maxQueueLength']) and (WANT_FILL not in state['queue'][:2]):
-		if state['needPlayerShuffle'] and (WANT_FILL not in state['queue']):
+	while state['queue'].can_make_game():
+		if state['needPlayerShuffle']:
 			random.shuffle(state['queue'])
+			state['queue'] = state['queue'].get_clean_queue()
 			state['needPlayerShuffle'] = False
-		room = FindRoomForPlayers(state, state['queue'][:2])
-		room['index'] = room['index'] + 1
-		room['players'] = state['queue'][:2]
+		# modify queue size
+		new_contenders = state['queue'].take_game_players()
+		room = FindRoomForPlayers(state, new_contenders)
+		room['index'] += 1
+		room['players'] = new_contenders
 		room['createdName'] = '{}{} {}'.format(prefix, room['name'], room['index'])
-		rooms[room['createdName']] = state['queue'][:2]
-		state['queue'] = state['queue'][2:]
+		rooms[room['createdName']] = new_contenders
 		print('Adding room "{}": {} vs {}'.format(
 			room['createdName'], room['players'][0], room['players'][1]))
 	
@@ -434,23 +471,17 @@ def HandleRoomFinish(state, room, battleID, winner=False):
 	if room not in state['rooms']:
 		return state
 	roomData = state['rooms'][room]
-	if roomData['finished']:
+	if winner is None:
 		return state
 	
 	if winner is False:
 		winner = GetListInput('Who won?', roomData['players'])
-	loser     = ListRemove(roomData['players'], winner)[0]
+	loser = [x for x in roomData['players'] if x != winner][0]
 	forumLink = '@B{}'.format(battleID)
 	
 	roomData['finished'] = True
 	state['toDelete'].append(roomData['createdName'])
-	if len(state['queue']) == 0:
-		state['queue'] = [winner, WANT_FILL, loser]
-	elif WANT_FILL in state['queue']:
-		state = ReplaceWantFill(state, winner)
-		state['queue'] = state['queue'] + [loser]
-	else:
-		state['queue'] = [winner] + state['queue'] + [loser]
+	state['queue'].enqueue_two(winner, loser)
 	state['playerRoomPreference'][winner] = room
 	state['playerRoomPreference'] = DictRemove(state['playerRoomPreference'], loser)
 	state['completedGames'][forumLink] = {
@@ -467,23 +498,26 @@ def GetBattleWinner(driver, battleID):
 	print('Checking battle "{}"'.format(battleID))
 	driver.get('https://zero-k.info/Battles/Detail/{}?ShowWinners=True'.format(battleID))
 	
-	winnerBox = driver.find_element(By.CLASS_NAME, 'fleft.battle_winner')
-	elements = winnerBox.find_elements(By.XPATH, ".//*")
-	userNameBox = winnerBox.find_element(By.CSS_SELECTOR, "a[href^='/Users/Detail/']")
-	return userNameBox.text
+	try:
+		winnerBox = driver.find_element(By.CLASS_NAME, 'fleft.battle_winner')
+		elements = winnerBox.find_elements(By.XPATH, ".//*")
+		userNameBox = winnerBox.find_element(By.CSS_SELECTOR, "a[href^='/Users/Detail/']")
+		return userNameBox.text
+	except:
+		return None
 
 
 def RemovePlayerFromState(state, player):
 	if player in state['queue']:
-		state['queue'] = ListRemove(state['queue'], player)
+		state['queue'].remove(player)
 		state['stateUpdated'] = True
 		return state
 	for name, roomData in state['rooms'].items():
 		if (not roomData['finished']) and (player in roomData['players']):
 			roomData['finished'] = True
 			state['toDelete'].append(roomData['createdName'])
-			otherPlayer = ListRemove(roomData['players'], player)[0]
-			state['queue'] = [otherPlayer] + state['queue']
+			otherPlayer = [x for x in roomData['players'] if x != player][0]
+			state['queue'].insert(0, otherPlayer)
 			state['stateUpdated'] = True
 			return state
 	return state
@@ -495,10 +529,7 @@ def AddPlayerToState(state, player):
 	for room in state['rooms'].values():
 		if room['finished'] is not True and player in room['players']:
 			return state
-	if WANT_FILL in state['queue']:
-		state = ReplaceWantFill(state, player)
-	else:
-		state['queue'] = state['queue'] + [player]
+	state['queue'].add_new_player(player)
 	state['stateUpdated'] = True
 	return state
 
@@ -524,7 +555,7 @@ def CheckAddOrRemovePlayers(state):
 		for player in playersToRemoveQueueOnly:
 			if player in state['queue']:
 				state = RemovePlayerFromState(state, player)
-				playersToRemoveQueueOnly = ListRemove(playersToRemoveQueueOnly, player)
+				playersToRemoveQueueOnly.remove(player)
 				changed = True
 		if changed and (addRemoveString is not False):
 			UpdateAddRemoveString()
@@ -664,8 +695,9 @@ def UpdateGameState(driver, state):
 			if 'createdName' in roomData and roomData['createdName'] in pageRooms:
 				pageData = pageRooms[roomData['createdName']]
 				if 'battleID' in pageData and (not roomData['finished']):
-					winner = GetBattleWinner(driver, pageData['battleID'])
-					state = HandleRoomFinish(state, baseName, pageData['battleID'], winner=winner)
+					for bid in pageData['battleID']:
+						winner = GetBattleWinner(driver, bid)
+						state = HandleRoomFinish(state, baseName, bid, winner=winner)
 		
 		state = HandleMissingPlayers(driver, state, pageRooms)
 	
@@ -682,7 +714,7 @@ def SendStateToLobby(driver, state):
 	
 	driver.get('https://zero-k.info/Lobby/Chat?Channel={}'.format(state['lobbyChannel']))
 	
-	cleanQueue = [name for name in state['queue'] if name != WANT_FILL]
+	cleanQueue = state['queue'].get_clean_queue()
 	if len(cleanQueue) > 0:
 		cleanQueue = ', '.join(cleanQueue)
 	else:
@@ -831,7 +863,7 @@ def SetupWindow():
 		if len(name) == 0 or state is False:
 			return 'break'
 		if name != lastTextString:
-			playerNames = state['queue'].copy()
+			playerNames = list(state['queue'])
 			for room, roomData in state['rooms'].items():
 				if 'players' in roomData:
 					playerNames = playerNames + roomData['players']
@@ -865,7 +897,7 @@ def SetupWindow():
 	spacing = 50
 	radioSpacing = 35
 	fontSmall = ("Helvetica", 12)
-	font      = ("Helvetica", 16)
+	font = ("Helvetica", 16)
 	fontBig   = ("Helvetica", 24)
 	
 	label = tk.Label(window, textvariable=pauseString, font=fontBig, justify=tk.LEFT)
@@ -928,7 +960,7 @@ def Test():
 	
 	UpdateChat(driver, state)
 	
-
-SetupThreads()
-#Test()
+if __name__ == '__main__':
+	SetupThreads()
+	#Test()
 
