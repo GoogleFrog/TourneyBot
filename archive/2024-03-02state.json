@@ -1,0 +1,365 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "RiposteR": "Alpha",
+        "marathon": "Delta",
+        "StiofanKingofAwoo": "Alpha",
+        "Skel": "Gamma"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Skel d",
+        "Second_Blue Queue: StiofanKingofAwoo, MSPR",
+        "MSPR deq",
+        "StiofanKingofAwoo deq",
+        "Second_Blue Queue: empty",
+        "Steel_Blue hmm, you did get the same player 3 times in a row",
+        "MSPR q",
+        "Steel_Blue I'm frezing the queue now",
+        "Second_Blue Queue: MSPR",
+        "Steel_Blue deq",
+        "StiofanKingofAwoo no more q\u00b4?",
+        "Steel_Blue you want in?",
+        "Steel_Blue it's open for 1 more",
+        "Steel_Blue gosh I shouldn't have froze it",
+        "Steel_Blue StiofanKingofAwoo",
+        "StiofanKingofAwoo nono",
+        "StiofanKingofAwoo i was just asking if that was the case",
+        "Steel_Blue ah, then yea, fc over in 3 mins",
+        "Steel_Blue I'm always causing rough starts, it seems",
+        "Second_Blue Queue: Skel, MSPR, cooolcat1239",
+        "Steel_Blue alright, thanks for comming",
+        "Second_Blue Queue: MSPR, cooolcat1239",
+        "Second_Blue Queue: cooolcat1239",
+        "Second_Blue Queue: empty",
+        "MSPR thanks",
+        "StiofanKingofAwoo ggwp",
+        "MSPR imma delete the game",
+        "MSPR lel",
+        "MSPR bye all",
+        "StiofanKingofAwoo nuuuuu"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Alpha": {
+            "name": "Alpha",
+            "index": 9,
+            "finished": true,
+            "players": [
+                "StiofanKingofAwoo",
+                "MSPR"
+            ],
+            "createdName": "FC Alpha 9"
+        },
+        "Beta": {
+            "name": "Beta",
+            "index": 10,
+            "finished": true,
+            "players": [
+                "Skel",
+                "iwantusername"
+            ],
+            "createdName": "FC Beta 10"
+        },
+        "Gamma": {
+            "name": "Gamma",
+            "index": 8,
+            "finished": true,
+            "players": [
+                "cooolcat1239",
+                "Skel"
+            ],
+            "createdName": "FC Gamma 8"
+        },
+        "Delta": {
+            "name": "Delta",
+            "index": 3,
+            "finished": true,
+            "players": [
+                "iwantusername",
+                "marathon"
+            ],
+            "createdName": "FC Delta 3"
+        },
+        "Epsilon": {
+            "name": "Epsilon",
+            "index": 3,
+            "finished": true,
+            "players": [
+                "marathon",
+                "RiposteR"
+            ],
+            "createdName": "FC Epsilon 3"
+        },
+        "Zeta": {
+            "name": "Zeta",
+            "index": 0,
+            "finished": true
+        },
+        "Eta": {
+            "name": "Eta",
+            "index": 0,
+            "finished": true
+        },
+        "Theta": {
+            "name": "Theta",
+            "index": 0,
+            "finished": true
+        },
+        "Iota": {
+            "name": "Iota",
+            "index": 0,
+            "finished": true
+        },
+        "Kappa": {
+            "name": "Kappa",
+            "index": 0,
+            "finished": true
+        },
+        "Lambda": {
+            "name": "Lambda",
+            "index": 0,
+            "finished": true
+        },
+        "Mu": {
+            "name": "Mu",
+            "index": 0,
+            "finished": true
+        },
+        "Nu": {
+            "name": "Nu",
+            "index": 0,
+            "finished": true
+        },
+        "Xi": {
+            "name": "Xi",
+            "index": 0,
+            "finished": true
+        },
+        "Omicron": {
+            "name": "Omicron",
+            "index": 0,
+            "finished": true
+        },
+        "Pi": {
+            "name": "Pi",
+            "index": 0,
+            "finished": true
+        },
+        "Rho": {
+            "name": "Rho",
+            "index": 0,
+            "finished": true
+        },
+        "Sigma": {
+            "name": "Sigma",
+            "index": 0,
+            "finished": true
+        },
+        "Tau": {
+            "name": "Tau",
+            "index": 0,
+            "finished": true
+        },
+        "Upsilon": {
+            "name": "Upsilon",
+            "index": 0,
+            "finished": true
+        },
+        "Phi": {
+            "name": "Phi",
+            "index": 0,
+            "finished": true
+        },
+        "Chi": {
+            "name": "Chi",
+            "index": 0,
+            "finished": true
+        },
+        "Psi": {
+            "name": "Psi",
+            "index": 0,
+            "finished": true
+        },
+        "Omega": {
+            "name": "Omega",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1843442": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Jill_2550",
+            "loser": "marathon"
+        },
+        "@B1843438": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "StiofanKingofAwoo",
+            "loser": "Mach56"
+        },
+        "@B1843444": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "cooolcat1239",
+            "loser": "Myopic"
+        },
+        "@B1843440": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "DanWarior",
+            "loser": "Skel"
+        },
+        "@B1843461": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Mach56",
+            "loser": "Myopic"
+        },
+        "@B1843468": {
+            "series": "Alpha",
+            "name": "FC Alpha 2",
+            "winner": "iwantusername",
+            "loser": "Skel"
+        },
+        "@B1843477": {
+            "series": "Beta",
+            "name": "FC Beta 5",
+            "winner": "cooolcat1239",
+            "loser": "Mach56"
+        },
+        "@B1843482": {
+            "series": "Gamma",
+            "name": "FC Gamma 1",
+            "winner": "Skel",
+            "loser": "DanWarior"
+        },
+        "@B1843489": {
+            "series": "Delta",
+            "name": "FC Delta 1",
+            "winner": "RiposteR",
+            "loser": "Jill_2550"
+        },
+        "@B1843493": {
+            "series": "Alpha",
+            "name": "FC Alpha 3",
+            "winner": "iwantusername",
+            "loser": "Myopic"
+        },
+        "@B1843497": {
+            "series": "Epsilon",
+            "name": "FC Epsilon 1",
+            "winner": "marathon",
+            "loser": "Mach56"
+        },
+        "@B1843507": {
+            "series": "Gamma",
+            "name": "FC Gamma 2",
+            "winner": "RiposteR",
+            "loser": "Skel"
+        },
+        "@B1843512": {
+            "series": "Beta",
+            "name": "FC Beta 6",
+            "winner": "cooolcat1239",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1843517": {
+            "series": "Epsilon",
+            "name": "FC Epsilon 2",
+            "winner": "marathon",
+            "loser": "Myopic"
+        },
+        "@B1843524": {
+            "series": "Gamma",
+            "name": "FC Gamma 3",
+            "winner": "RiposteR",
+            "loser": "cooolcat1239"
+        },
+        "@B1843525": {
+            "series": "Beta",
+            "name": "FC Beta 7",
+            "winner": "Skel",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1843526": {
+            "series": "Alpha",
+            "name": "FC Alpha 5",
+            "winner": "Mach56",
+            "loser": "iwantusername"
+        },
+        "@B1843536": {
+            "series": "Epsilon",
+            "name": "FC Epsilon 3",
+            "winner": "RiposteR",
+            "loser": "marathon"
+        },
+        "@B1843539": {
+            "series": "Beta",
+            "name": "FC Beta 8",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1843540": {
+            "series": "Alpha",
+            "name": "FC Alpha 6",
+            "winner": "RiposteR",
+            "loser": "Mach56"
+        },
+        "@B1843543": {
+            "series": "Gamma",
+            "name": "FC Gamma 4",
+            "winner": "StiofanKingofAwoo",
+            "loser": "MSPR"
+        },
+        "@B1843545": {
+            "series": "Beta",
+            "name": "FC Beta 9",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1843554": {
+            "series": "Gamma",
+            "name": "FC Gamma 5",
+            "winner": "cooolcat1239",
+            "loser": "StiofanKingofAwoo"
+        },
+        "@B1843560": {
+            "series": "Gamma",
+            "name": "FC Gamma 6",
+            "winner": "cooolcat1239",
+            "loser": "Skel"
+        },
+        "@B1843563": {
+            "series": "Delta",
+            "name": "FC Delta 3",
+            "winner": "marathon",
+            "loser": "iwantusername"
+        },
+        "@B1843565": {
+            "series": "Alpha",
+            "name": "FC Alpha 9",
+            "winner": "StiofanKingofAwoo",
+            "loser": "MSPR"
+        },
+        "@B1843583": {
+            "series": "Gamma",
+            "name": "FC Gamma 8",
+            "winner": "Skel",
+            "loser": "cooolcat1239"
+        }
+    }
+}
