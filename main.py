@@ -64,12 +64,19 @@ class Queue(list):
 		# place loser at end of queue
 		self.append(loser)
 
-	def add_new_player(self, new_player):
+	def add_player(self, new_player):
 		if WANT_FILL in self:
 			fillIndex = [i for i, x in enumerate(self) if x == WANT_FILL][0]
 			self[fillIndex] = new_player
 		else:
 			self.append(new_player)
+
+	def priority_add_player(self, player):
+		if WANT_FILL in self:
+			fillIndex = [i for i, x in enumerate(self) if x == WANT_FILL][0]
+			self[fillIndex] = player
+		else:
+			self.insert(0, player)
 
 	def can_make_game(self):
 		return len(self) > 1 and WANT_FILL not in self
@@ -517,7 +524,7 @@ def RemovePlayerFromState(state, player):
 			roomData['finished'] = True
 			state['toDelete'].append(roomData['createdName'])
 			otherPlayer = [x for x in roomData['players'] if x != player][0]
-			state['queue'].insert(0, otherPlayer)
+			state['queue'].priority_add_player(otherPlayer)
 			state['stateUpdated'] = True
 			return state
 	return state
@@ -529,7 +536,7 @@ def AddPlayerToState(state, player):
 	for room in state['rooms'].values():
 		if room['finished'] is not True and player in room['players']:
 			return state
-	state['queue'].add_new_player(player)
+	state['queue'].add_player(player)
 	state['stateUpdated'] = True
 	return state
 
