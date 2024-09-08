@@ -1,0 +1,260 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "PLT_Godde": "Arena",
+        "PLT_Atosty": "Estate",
+        "Fine": "Battlements",
+        "Buckymancer": "Arena",
+        "Sixi": "Battlements"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Steel_Blue Fine disapeared",
+        "Helwor ez",
+        "Second_Blue Queue: Helwor",
+        "Helwor gotta pee, brb",
+        "Helwor back",
+        "Stuart98 q",
+        "Second_Blue Queue: Helwor, Stuart98",
+        "Second_Blue Queue: empty",
+        "PLT_Godde deq",
+        "Second_Blue Queue: Sixi",
+        "Steel_Blue q",
+        "Second_Blue Queue: Sixi, Steel_Blue",
+        "Second_Blue Queue: empty",
+        "Steel_Blue deq",
+        "Second_Blue Queue: Sixi",
+        "Sixi deq",
+        "Second_Blue Queue: empty",
+        "Sixi thank you for the fights everyone!",
+        "PLT_Godde q",
+        "Second_Blue Queue: PLT_Godde",
+        "Steel_Blue fc open for 22 more minutes!",
+        "Second_Blue Queue: Stuart98, PLT_Godde, Helwor",
+        "Second_Blue Queue: Helwor",
+        "Second_Blue Queue: PLT_Godde, Helwor, Stuart98",
+        "Second_Blue Queue: Stuart98",
+        "Stuart98 nobody else in queue?",
+        "Second_Blue Queue: PLT_Godde, Stuart98, Helwor",
+        "PLT_Godde deq",
+        "Second_Blue Queue: Helwor",
+        "Helwor ggs"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 11,
+            "finished": false,
+            "players": [
+                "Stuart98",
+                "Helwor"
+            ],
+            "createdName": "FC Arena 11"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 7,
+            "finished": true,
+            "players": [
+                "Sixi",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Battlements 7"
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 5,
+            "finished": true,
+            "players": [
+                "PLT_Godde",
+                "Sixi"
+            ],
+            "createdName": "FC Courtyard 5"
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 2,
+            "finished": true,
+            "players": [
+                "Buckymancer",
+                "Steel_Blue"
+            ],
+            "createdName": "FC Dungeon 2"
+        },
+        "Estate": {
+            "name": "Estate",
+            "index": 4,
+            "finished": true,
+            "players": [
+                "PLT_Atosty",
+                "Stuart98"
+            ],
+            "createdName": "FC Estate 4"
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Gate": {
+            "name": "Gate",
+            "index": 0,
+            "finished": true
+        },
+        "Harbor": {
+            "name": "Harbor",
+            "index": 0,
+            "finished": true
+        },
+        "Island": {
+            "name": "Island",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1993866": {
+            "series": "Battlements",
+            "name": "FC Battlements 1",
+            "winner": "Steel_Blue",
+            "loser": "Fine"
+        },
+        "@B1993868": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "PLT_Godde",
+            "loser": "Vorpalkitty"
+        },
+        "@B1993879": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "PLT_Godde",
+            "loser": "Fine"
+        },
+        "@B1993884": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 1",
+            "winner": "Vorpalkitty",
+            "loser": "T8001"
+        },
+        "@B1993887": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "PLT_Godde",
+            "loser": "Buckymancer"
+        },
+        "@B1993893": {
+            "series": "Battlements",
+            "name": "FC Battlements 2",
+            "winner": "Steel_Blue",
+            "loser": "Stuart98"
+        },
+        "@B1993896": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 2",
+            "winner": "PLT_Godde",
+            "loser": "Vorpalkitty"
+        },
+        "@B1993898": {
+            "series": "Estate",
+            "name": "FC Estate 1",
+            "winner": "Helwor",
+            "loser": "Sixi"
+        },
+        "@B1993902": {
+            "series": "Dungeon",
+            "name": "FC Dungeon 1",
+            "winner": "PLT_Atosty",
+            "loser": "Fine"
+        },
+        "@B1993906": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 3",
+            "winner": "PLT_Godde",
+            "loser": "Stuart98"
+        },
+        "@B1993910": {
+            "series": "Battlements",
+            "name": "FC Battlements 3",
+            "winner": "Fine",
+            "loser": "Sixi"
+        },
+        "@B1993914": {
+            "series": "Estate",
+            "name": "FC Estate 2",
+            "winner": "PLT_Atosty",
+            "loser": "Helwor"
+        },
+        "@B1993915": {
+            "series": "Arena",
+            "name": "FC Arena 5",
+            "winner": "Buckymancer",
+            "loser": "Vorpalkitty"
+        },
+        "@B1993917": {
+            "series": "Battlements",
+            "name": "FC Battlements 4",
+            "winner": "Fine",
+            "loser": "Stuart98"
+        },
+        "@B1993920": {
+            "series": "Estate",
+            "name": "FC Estate 3",
+            "winner": "PLT_Atosty",
+            "loser": "Sixi"
+        },
+        "@B1993926": {
+            "series": "Courtyard",
+            "name": "FC Courtyard 4",
+            "winner": "PLT_Godde",
+            "loser": "Helwor"
+        },
+        "@B1993927": {
+            "series": "Battlements",
+            "name": "FC Battlements 5",
+            "winner": "Fine",
+            "loser": "Vorpalkitty"
+        },
+        "@B1993947": {
+            "series": "Battlements",
+            "name": "FC Battlements 7",
+            "winner": "Sixi",
+            "loser": "Steel_Blue"
+        },
+        "@B1993951": {
+            "series": "Arena",
+            "name": "FC Arena 7",
+            "winner": "Stuart98",
+            "loser": "Helwor"
+        },
+        "@B1993958": {
+            "series": "Arena",
+            "name": "FC Arena 8",
+            "winner": "PLT_Godde",
+            "loser": "Stuart98"
+        },
+        "@B1993966": {
+            "series": "Arena",
+            "name": "FC Arena 9",
+            "winner": "PLT_Godde",
+            "loser": "Helwor"
+        }
+    }
+}
