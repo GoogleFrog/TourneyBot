@@ -1,0 +1,129 @@
+{
+    "queue": [],
+    "maxQueueLength": 100,
+    "maxQueueLengthTimer": false,
+    "nextMaxQueueLength": 100,
+    "postReadTimer": 4,
+    "postSetupTimer": 4,
+    "stateUpdated": false,
+    "needPlayerShuffle": false,
+    "lobbyChannel": "fc",
+    "playerRoomPreference": {
+        "Skel": "Arena",
+        "cooolcat1239": "Arena"
+    },
+    "missingPlayers": [],
+    "winStreak": {},
+    "botName": "Second_Blue",
+    "toDelete": [],
+    "prevChat": [
+        "Second_Blue Queue: empty",
+        "Skel zk just small",
+        "Skel and many are scared of none teams",
+        "Chungoose q",
+        "Second_Blue Queue: Chungoose",
+        "Chungoose dequeue",
+        "Second_Blue Queue: empty",
+        "Chungoose fc looking hype today boys !",
+        "DanWarior q",
+        "Second_Blue Queue: DanWarior",
+        "Jill_2550 q",
+        "Second_Blue Queue: DanWarior, Jill_2550",
+        "cooolcat1239 q",
+        "Second_Blue Queue: empty",
+        "Second_Blue Queue: cooolcat1239",
+        "cooolcat1239 FC isnt the same without me obv",
+        "Second_Blue Queue: Jill_2550, cooolcat1239, DanWarior",
+        "Second_Blue Queue: DanWarior",
+        "Steel_Blue so sorry we didn't get many games. But we did get 2 games!",
+        "cooolcat1239 wait what 2 games?",
+        "Second_Blue Queue: cooolcat1239, DanWarior, Jill_2550",
+        "Second_Blue Queue: Jill_2550",
+        "Jill_2550 leave",
+        "Second_Blue Queue: empty",
+        "Steel_Blue the game is over?",
+        "Jill_2550 I have my own game event to go to",
+        "Steel_Blue what's with the dan/coolcat game?",
+        "skigear quack",
+        "Steel_Blue is it a real game?",
+        "Steel_Blue fightlclub is over"
+    ],
+    "newChat": [],
+    "rooms": {
+        "Arena": {
+            "name": "Arena",
+            "index": 4,
+            "finished": false,
+            "players": [
+                "cooolcat1239",
+                "DanWarior"
+            ],
+            "createdName": "FC Arena 4"
+        },
+        "Battlements": {
+            "name": "Battlements",
+            "index": 0,
+            "finished": true
+        },
+        "Courtyard": {
+            "name": "Courtyard",
+            "index": 0,
+            "finished": true
+        },
+        "Dungeon": {
+            "name": "Dungeon",
+            "index": 0,
+            "finished": true
+        },
+        "Estate": {
+            "name": "Estate",
+            "index": 0,
+            "finished": true
+        },
+        "Field": {
+            "name": "Field",
+            "index": 0,
+            "finished": true
+        },
+        "Gate": {
+            "name": "Gate",
+            "index": 0,
+            "finished": true
+        },
+        "Harbor": {
+            "name": "Harbor",
+            "index": 0,
+            "finished": true
+        },
+        "Island": {
+            "name": "Island",
+            "index": 0,
+            "finished": true
+        },
+        "Tower": {
+            "name": "Tower",
+            "index": 0,
+            "finished": true
+        }
+    },
+    "completedGames": {
+        "@B1865185": {
+            "series": "Arena",
+            "name": "FC Arena 1",
+            "winner": "Skel",
+            "loser": "Mach56"
+        },
+        "@B1865281": {
+            "series": "Arena",
+            "name": "FC Arena 2",
+            "winner": "Jill_2550",
+            "loser": "DanWarior"
+        },
+        "@B1865300": {
+            "series": "Arena",
+            "name": "FC Arena 3",
+            "winner": "cooolcat1239",
+            "loser": "Jill_2550"
+        }
+    }
+}
